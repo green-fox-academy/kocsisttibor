@@ -5,36 +5,41 @@
 		<title>test heading</title>
 
 		<style>
-			img{
-				height:100px;
+			header{
+				width:100%;
+				margin:0;
+				background-color:#333333;
 			}
 
-			header{
+			.flex-container{
 				display:flex;
 			}
 
-			nav{
-				float:right;
+			.box{
+				min-width:100px;
 			}
 
-			
     </style>
 
     </head>
 
     <body>
 			<header>
-				<div id="logo">
-					<img src="camera-lense-clipart-29.png">
+				<div class="flex-container">
+					<div class="box logo">
+						<img src="camera-lense-clipart-29.png">
+					</div>
+
+					<div class="box empty">
+					</div>
+
+					<div class="box nav">
+						<a href="first_website.html">HOME</a>
+						<a href="wiki.html">WIKI</a>
+						<a href="https://github.com">GITHUB</a>
+						<a href="https://www.linkedin.com">LINKEDIN</a>
+					</div>
 				</div>
-
-				<nav>
-					<a href="first_website.html">HOME</a>
-					<a href="wiki.html">WIKI</a>
-					<a href="https://github.com">GITHUB</a>
-					<a href="https://www.linkedin.com">LINKEDIN</a>
-				</nav>
-
 			</header>
 		</body>
 
