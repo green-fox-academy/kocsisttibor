@@ -57,7 +57,8 @@
     height: 445px;
     position: absolute;
     left: 100px;
-    bottom: 0px;
+    bottom: 10px;
+    margin: 0px 10px;
 }
 
 .name{
@@ -87,7 +88,7 @@ input[type="number"]{
     height: 25px;
 }
 
-::-webkit-input-placeholder { 
+::-webkit-input-placeholder{ 
     color: #DCD6CD;
 }
 
@@ -122,9 +123,10 @@ input[type="checkbox"]{
     font-weight: normal;
 }
 
-textarea[id="desc"]{
+textarea{
     margin: 10px 0px;
-    width: 620px;
+    width: 600px;
     border-radius: 1px;
-    height: 25px;
+    height: 150px;
 }
+
