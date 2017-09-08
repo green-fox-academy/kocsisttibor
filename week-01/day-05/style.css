@@ -17,3 +17,21 @@
     position: absolute;
     left: 100px;
 }
+
+.halfsize{
+    width: 310px;
+    height: 435px;
+    background-color: green;
+    position: absolute;
+    display: inline-block;
+}
+
+.left{
+    left: 100px;
+    top: 120px;
+}
+
+.right{
+    left: 410px;
+    top: 120px;
+}
