@@ -35,3 +35,12 @@
     left: 410px;
     top: 120px;
 }
+
+.fullsize{
+    width: 620px;
+    height: 450px;
+    background-color: red;
+    position: absolute;
+    left: 100px;
+    bottom: 0px;
+}
