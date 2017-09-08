@@ -18,12 +18,22 @@
     left: 100px;
 }
 
-.halfsize{
-    width: 310px;
-    height: 435px;
+.half{
     background-color: green;
     position: absolute;
     display: inline-block;
+}
+
+.big{
+    width: 290px;
+    height: 415px;
+    padding: 10px;
+}
+
+.small{
+    height: 40px;
+    background-color: yellow;
+    width: 290px;    
 }
 
 .left{
@@ -38,9 +48,13 @@
 
 .fullsize{
     width: 620px;
-    height: 450px;
+    height: 445px;
     background-color: red;
     position: absolute;
     left: 100px;
     bottom: 0px;
+}
+
+.smallhalf{
+
 }
