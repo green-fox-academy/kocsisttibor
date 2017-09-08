@@ -62,7 +62,7 @@
 
 .name{
     padding: 10px 0px 0px 0px;
-    font-size: 15px;
+    font-size: 13px;
     color: #494261;
     font-weight: bold;
 }
@@ -87,4 +87,19 @@ input[type="number"]{
 
 ::-webkit-input-placeholder { 
     color: #DCD6CD;
+}
+
+.year{
+    display: inline-block;
+    width: 110px;
+}
+
+.sex{
+    display: inline-block;
+    width: 170px;
+}
+
+input[type="radio"]{
+    display: inline;
+    margin: 14px 10px;
 }

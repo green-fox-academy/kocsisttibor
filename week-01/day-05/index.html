@@ -8,6 +8,7 @@
     <link rel="stylesheet" type="text/css" href="style.css" />
 </head>
 <body>
+<form>
     <div class="main-box">
         <div class="header">
             Profil
@@ -21,24 +22,20 @@
             
             <div class="name">
                 Név <span class="star">*</span>
-                <form>
-                    <input type="text" name="Name" id="name">
-                </form>
+                <input type="text" name="Name" id="name">
             </div>
             
-            <div class="name">
-                Születési éved
-                <form>
-                    <input type="number" placeholder="pl: 1984" id="year">
-                </form>
+            <div class="name year">
+                Születési éved<br>
+                <input type="number" placeholder="pl: 1984" id="year">
             </div>
 
-            <div>
-                Nemed
-                <form>
-                    <input type="radio" id="male" name="Férfi" />
-                    <input type="radio" id="female" name="Nő" />
-                </form>
+            <div class="name sex">
+                Nemed<br>
+                <input type="radio" id="male" name="Férfi" />
+                <label for="male">Férfi</label>
+                <input type="radio" id="female" name="Nő" />
+                <label for="male">Nő</label>
             </div>
 
         </div>
@@ -55,8 +52,7 @@
 
         </div>
 
-
     </div>
-    
+</form>    
 </body>
 </html>
