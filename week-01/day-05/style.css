@@ -103,3 +103,14 @@ input[type="radio"]{
     display: inline;
     margin: 14px 10px;
 }
+
+.mark{
+    width: 140px;
+    display:inline-block;
+    margin: 10px 0px;
+}
+
+input[type="checkbox"]{
+    margin: 5px 0px;
+}
+
