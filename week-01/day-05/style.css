@@ -7,5 +7,13 @@
     height: 1000px;
     margin: 0 auto;
     background-color: #DCD6CD;
-    border: 1px solid black;
+    position: relative;
+}
+
+.header{
+    width: 620px;
+    height: 120px;
+    background-color: black;
+    position: absolute;
+    left: 100px;
 }
