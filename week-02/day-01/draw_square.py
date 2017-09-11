@@ -10,3 +10,10 @@
 # %%%%%
 #
 # The square should have as many lines as the number was
+
+number = int(input("Give me a number: "))
+
+print("%" * number)
+for i in range(number-2):
+    print("%" + " " * (number - 2) + "%")
+print("%" * number)  
