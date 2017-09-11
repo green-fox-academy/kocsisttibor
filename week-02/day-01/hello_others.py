@@ -4,3 +4,7 @@
 # Hello, Esther!
 # Hello, Mary!
 # Hello, Joe!
+
+print("Hello, Tanya!")
+print("Hello, Kristof!")
+print("Hello, Krisztian!")
