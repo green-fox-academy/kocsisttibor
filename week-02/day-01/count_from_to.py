@@ -11,3 +11,13 @@
 # 3
 # 4
 # 5
+
+first = int(input("First number:"))
+second = int(input("Second number:"))
+
+if first >= second:
+    print("The second number should be bigger")
+else:
+    while first < second:
+        print(first) 
+        first += 1
