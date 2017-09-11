@@ -8,3 +8,7 @@
 #  John Doe
 #  31
 #  1.87
+
+print("Tibi")
+print(36)
+print(1.8)
