@@ -20,4 +20,5 @@ def matrix(num):
         outer.append(inner)
     return(outer)
     
-print(matrix(4))
+for l in matrix(4):
+    print(l)
