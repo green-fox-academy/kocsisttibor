@@ -22,3 +22,6 @@ def matrix(num):
     
 for l in matrix(4):
     print(l)
+
+for i, l in zip(range(4), matrix(4)):
+    print(i , l)
