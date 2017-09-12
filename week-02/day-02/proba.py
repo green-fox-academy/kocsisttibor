@@ -9,3 +9,11 @@ af = [ 4, 5, 6, 7, 8]
 af = [x * 2 for x in af]
 
 print(af)
+
+bs = ["b" for b in range(4)]
+
+print(bs)
+
+bsa = [b + "a" for b in bs]
+
+print(bsa)
