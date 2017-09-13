@@ -16,4 +16,4 @@ print(bs)
 
 bsa = [b + "a" for b in bs]
 
-print(bsa)
+print(bsa, end = " ")
