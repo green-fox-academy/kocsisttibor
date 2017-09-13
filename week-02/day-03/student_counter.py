@@ -20,13 +20,13 @@ def candy(given_list):
 candy(students)
 
 def sum_candy(given_list):
-    sumcandy = 0
+    sumage = 0
 
     for i in range(len(given_list)):
         if given_list[i]["candies"] < 5:
-            sumcandy += 1
+            sumage += given_list[i]["age"]
 
-    print("Number of students with less than 5 candies:" + str(sumcandy))
+    print("Sum of age of students with less than 5 candies:" + str(sumage))
 
 sum_candy(students)
 
