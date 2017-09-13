@@ -25,3 +25,16 @@ def name_and_balance(acc_num):
     return name_and_balance
 
 print(name_and_balance(43546731))
+
+def transfer(from_account, to_account, value):
+    for i in range(len(accounts)):
+        if accounts[i]["account_number"] == from_account:
+            accounts[i]["balance"] -= value
+        elif accounts[i]["account_number"] == to_account:
+            accounts[i]["balance"] += value
+    return accounts
+
+print(transfer(11234543, 23456311, 4099))
+
+
+
