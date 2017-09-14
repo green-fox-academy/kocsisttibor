@@ -17,3 +17,14 @@ print("input: " + str(random_list))
 random_list.sort()
 
 print("sorted: " + str(random_list)) 
+
+# solution without .sort()
+
+def sorter (in_list):
+    for i in range(len(in_list)):
+        for j in range(len(in_list)-1-i):
+            if in_list[j] > in_list[j + 1]:
+                in_list[j], in_list[j + 1] = in_list[j + 1], in_list[j]
+    return in_list
+
+print("sorted without .sort(): " + str(sorter(random_list)))
