@@ -11,4 +11,14 @@ from random import randint
 
 random_list = [randint(1, 10) for x in range(20)]
 
-print(random_list)
+print("input: " + str(random_list))
+
+def unique(given_list):
+    newlist = []
+    for i in given_list:
+        if i not in newlist:
+            newlist.append(i)
+    return newlist
+
+print("output: " + str(unique(random_list)))
+print("\nB-option output: " + str(set(random_list)))
