@@ -23,27 +23,39 @@ ingredients = [
 	{ 'lime juice': 10, 'needs_cooling': True },
 	{ 'soda': 100, 'needs_cooling': True }
 ]
-lengths = []
-for i in range(len(ingredients)):
-    temp_list = list(ingredients[i].keys())
-    lengths.append(len(temp_list[0]))
-width = max(lengths) + 2
 
-def table_printer(given_list):
-    print("+" + "-" * (width) + "+---------------+----------+")
-    print("| Ingredient" + " " * (width - len(" Ingredient")) + 
+
+def width(in_list):             #column-width?
+    lengths = []
+    for i in range(len(in_list)):
+        temp_list = list(in_list[i].keys())
+        lengths.append(len(temp_list[0]))
+    return max(lengths) + 2
+
+
+def table_header(in_list):
+    print("+" + "-" * width(in_list) + "+---------------+----------+")
+    print("| Ingredient" + " " * (width(in_list) - len(" Ingredient")) + 
     "| Needs cooling | In stock |" )
-    print("+" + "-" * (width) + "+---------------+----------+")
-    for i in range(len(given_list)):
-        temp_list = list(ingredients[i].keys())
-        if ingredients[i]["needs_cooling"]:
+    print("+" + "-" * width(in_list) + "+---------------+----------+")    # separator (use also for footer)
+
+
+def table_body(in_list):
+    for i in range(len(in_list)):                   #only in_list
+        temp_list = list(in_list[i].keys())
+        if in_list[i]["needs_cooling"]:
             cool = "Yes"
         else:
             cool = "No"
-        print("| " + temp_list[0] + " " * (width - len(temp_list[0]) - 1) 
+        print("| " + temp_list[0] + " " * (width(in_list) - len(temp_list[0]) - 1) 
         + "| " + cool + " " * (14 - len(cool)) + "| " 
-        + str(ingredients[i][temp_list[0]]) + " " * 
-        (9 - len(str(ingredients[i][temp_list[0]]))) + "|")
-    print("+" + "-" * (width) + "+---------------+----------+")
+        + str(in_list[i][temp_list[0]]) + " " * 
+        (9 - len(str(in_list[i][temp_list[0]]))) + "|")             #create variables before, not in print
+    print("+" + "-" * width(in_list) + "+---------------+----------+")
+
+
+def table_printer(in_list):
+    table_header(in_list)
+    table_body(in_list)
 
 table_printer(ingredients)
