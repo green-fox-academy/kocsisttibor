@@ -15,5 +15,6 @@ def in_list(guess):
     return in_list
 
 guess = [int(i) for i in input("Enter a list of numbers separated by space: ").split()]
+print(guess)
 
 print(in_list(guess))
