@@ -1,24 +1,18 @@
+# hint: https://www.youtube.com/watch?v=uCsD3ZGzMgE
+
 print("Enter a number:")
 num = int(input())
 
-def josephus(num):
-    seats = [i + 1 for i in range(num)]
-    
-    i = len(seats)
-    if len(seats) % 2 == 0:
-        while len(seats) > 1:
-            i = len(seats)
-            while i > 1:
-                seats.remove(seats[i])
-                i -= 2
-    else:
-        while len(seats) > 1:
-            i = len(seats) - 1
-            while i > 1:
-                seats.remove(seats[i])
-                i -= 2
-
-    print(seats)
+def power(num):
+    i = 0
+    while 2 ** i <= num:
+        i += 1
+    return i - 1
 
 
-josephus(num)
+def josephus(num, power):
+    odds = num - 2 ** power
+    return odds * 2 + 1 
+
+
+print(josephus(num, power(num)))
