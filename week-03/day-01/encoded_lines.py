@@ -8,8 +8,10 @@ def decrypt(file_name):
     with open(file_name) as f:
         content = list(f.read())
     for i in range(len(content)):
-        if content[i] != "\n":
+        if content[i] == " ":
+            content[i] = " "
+        elif content[i] != "\n":
             content[i] = abc_list[int(abc_list.index(content[i])) - 1]
-    print(content)
+    print("".join(content))
 
 decrypt("encoded_lines.txt")
