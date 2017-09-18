@@ -10,23 +10,14 @@ def gathering():
             numbers.append(i)
     return numbers
 
-def counting(numbers):
-    topfive = [0, 0, 0, 0, 0]
-    for i in set(numbers):
-        if numbers.count(i) > int(topfive[4]):
-            if numbers.count(i) > int(topfive[3]):
-                if numbers.count(i) > int(topfive[2]):
-                    if numbers.count(i) > int(topfive[1]):
-                        if numbers.count(i) > int(topfive[0]):
-                            topfive[0] = i
-                        else:
-                            topfive[1] = i
-                    else:
-                        topfive[2] = i
-                else:
-                    topfive[3] = i
-            else:
-                topfive[4] = i
-    print(topfive)
+def counting():
+    numbers = gathering()
 
-counting(gathering())
+    for i in range(len(numbers)):
+        numbers[i] = str(numbers.count(numbers[i])) + "(" + str(numbers[i]) + ")"
+
+    numbers.sort()
+
+    print("Top five numbers: " + numbers[-1] + ", "+ numbers[-2] + ", "+ numbers[-3] + ", "+ numbers[-4] + ", "+ numbers[-5])
+
+counting()
