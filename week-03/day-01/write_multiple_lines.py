@@ -8,7 +8,10 @@
 # The function should not raise any error if it could not write the file.
 
 def multiple_word_writer(path, word, number):
-    with open(path, "w") as f:
-        f.write((word + "\n") * number )
+    try:
+        with open(path, "w") as f:
+            f.write((word + "\n") * number )
+    except:
+        print("Oooops")
 
 multiple_word_writer("C:\E\GreenFox\kocsisttibor\week-03\day-01\multiple_lines.txt", "apple", 5)
