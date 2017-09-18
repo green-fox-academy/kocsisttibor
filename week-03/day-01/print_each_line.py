@@ -6,6 +6,6 @@
 try:
     with open("my-file.txt", "r") as f:
         for line in f:
-            print(f.readline())
+            print(line)
 except Exception as e:
     print("cannot open: " + e.filename)
