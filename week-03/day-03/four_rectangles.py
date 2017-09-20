@@ -13,5 +13,6 @@ def rectangle (x0, y0, x1, y1, color):
 rectangle(20, 20, 30, 40, "red")
 rectangle(40, 20, 80, 50, "yellow")
 rectangle(110, 110, 150, 150, "purple")
+rectangle(10, 140, 50, 180, "orange")
 
 root.mainloop()
