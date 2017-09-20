@@ -13,8 +13,8 @@ def gathering():
 def counting():
     numbers = gathering()
 
-    for i in range(len(numbers)):
-        numbers[i] = str(numbers.count(numbers[i])) + "(" + str(numbers[i]) + ")"
+    for i in set(numbers):
+        i = str(numbers.count(numbers[int(i)])) + "(" + str(i) + ")"
 
     numbers.sort()
 
