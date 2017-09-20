@@ -10,56 +10,27 @@ canvas.pack()
 # and repeat this pattern in each quarter:
 # [https://github.com/greenfox-academy/teaching-materials/blob/master/workshop/drawing/line-play/r1.png]
 
-def line_from_top_to_right(x, vertical, horizontal):
-    line = canvas.create_line(x, vertical, horizontal, x, fill = "purple")
+def top_to_right_line(left, right, top, bottom, actual):
+    line = canvas.create_line(actual + left, top, right, actual + top, fill = "purple")
 
 
-def line_from_bottom_to_left(y, vertical, horizontal):
-    line = canvas.create_line(vertical, y, y, horizontal, fill = "green")
+def bottom_to_left_line(left, right, top, bottom, actual):
+    line = canvas.create_line(left, actual + top, actual + left, bottom, fill = "green")
 
+canvas_size = 300
+starting_position = 20
+step = 10
 
-def line_from_top_to_right_right(x, vertical, horizontal):
-    line = canvas.create_line(x, vertical, horizontal, x - horizontal / 2, fill = "purple")
+quarters = [[0, canvas_size / 2, 0, canvas_size / 2, starting_position], 
+            [canvas_size / 2, canvas_size, 0, canvas_size / 2, starting_position],
+            [0, canvas_size / 2, canvas_size / 2, canvas_size, starting_position],
+            [canvas_size / 2, canvas_size, canvas_size / 2, canvas_size, starting_position]]
 
-
-def line_from_bottom_to_left_left(y, vertical, horizontal):
-    line = canvas.create_line(vertical, y, y, horizontal, fill = "green")
-
-start = 20
-distance = 10
-vertical = 0
-horizontal = 150
-
-def seed_drawer(start, distance, vertical, horizontal):
-    for i in range(int((horizontal - start) / distance)):
-        line_from_top_to_right(start, vertical, horizontal)
-        start += distance
-
-    for j in range(int((start - vertical) / distance) - 1):
-        line_from_bottom_to_left(start - distance, vertical, horizontal)
-        start -= distance
-
-seed_drawer( start, distance, vertical, horizontal)
-
-start = 170
-vertical = 150
-horizontal = 300
-seed_drawer( start, distance, vertical, horizontal)
-
-start = 170
-vertical = 0
-horizontal = 300
-
-def seed_drawer_2(start, distance, vertical, horizontal):
-    for i in range(int((horizontal - start) / distance)):
-        line_from_top_to_right_right(start, vertical, horizontal)
-        start += distance
-    start -=150
-    for j in range(int((start - vertical) / distance) - 1):
-        line_from_bottom_to_left_left(start - distance, vertical, horizontal)
-        start -= distance
-
-seed_drawer_2( start, distance, vertical, horizontal)
-
-
+for i in range(4):
+    for j in range(int(canvas_size / 2 / step) - 2):
+        top_to_right_line(*quarters[i])
+        bottom_to_left_line(*quarters[i])
+        quarters[i][4] += step
+    i += 1
+    
 root.mainloop()
