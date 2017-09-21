@@ -2,7 +2,7 @@
 # lowercase 'x' chars have been changed to 'y' chars.
 
 def x_to_y(text):
-    if "x" not in text:    # this is not necessary, but makes the function faster :)
+    if "x" not in text:   
         return text
     else:
         if text[0] == "x":
@@ -10,4 +10,4 @@ def x_to_y(text):
         else:
             return text[0] + x_to_y(str(text[1:]))
 
-print(x_to_y("macskx"))
+print(x_to_y("maxxka"))
