@@ -14,10 +14,11 @@ def counting():
     numbers = gathering()
 
     for i in set(numbers):
-        i = str(numbers.count(numbers[int(i)])) + "(" + str(i) + ")"
+        numbers[numbers.index(i)] = str(numbers.count(i)) + "(" + str(i) + ")"
 
-    numbers.sort()
+    print(numbers)
+    # numbers.sort()
 
-    print("Top five numbers: " + numbers[-1] + ", "+ numbers[-2] + ", "+ numbers[-3] + ", "+ numbers[-4] + ", "+ numbers[-5])
+    # print("Top five numbers: " + numbers[-1] + ", "+ numbers[-2] + ", "+ numbers[-3] + ", "+ numbers[-4] + ", "+ numbers[-5])
 
 counting()
