@@ -12,13 +12,20 @@ def gathering():
 
 def counting():
     numbers = gathering()
+    uniques = list(set(numbers))
+    top_five = {}
 
-    for i in set(numbers):
-        numbers[numbers.index(i)] = str(numbers.count(i)) + "(" + str(i) + ")"
+    occurances = []
 
-    print(numbers)
-    # numbers.sort()
+    for i in range(len(uniques)):
+        occurances.append(numbers.count(uniques[i]))
 
-    # print("Top five numbers: " + numbers[-1] + ", "+ numbers[-2] + ", "+ numbers[-3] + ", "+ numbers[-4] + ", "+ numbers[-5])
+    for i in range(5):
+        top_five[uniques[occurances.index(max(occurances))]] = max(occurances)
+        uniques.remove(uniques[occurances.index(max(occurances))])
+        occurances.remove(max(occurances))
+
+    print(top_five)
+
 
 counting()
