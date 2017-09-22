@@ -1,30 +1,32 @@
 # Create a method that find the 5 most common lottery numbers otos.csv
 
-def gathering():
-    with open("hatos.txt", "r") as f:
-        lines = f.read().splitlines()
+def importing(filename):
+    with open(filename, "r") as f:
+        return f.read().splitlines()
+
+def collecting(filename):
     numbers = []
-    for line in lines:
+    for line in importing(filename):
         parts = line.split("Ft;")
         for i in parts[-1].split(";"):
             numbers.append(i)
     return numbers
 
-def counting():
-    numbers = gathering()
+def counting(filename):
+    numbers = collecting(filename)
     uniques = list(set(numbers))
-    occurances = []
+    occurrences = []
     top_five = {}
 
     for i in range(len(uniques)):
-        occurances.append(numbers.count(uniques[i]))
+        occurrences.append(numbers.count(uniques[i]))
 
     for i in range(5):
-        top_five[uniques[occurances.index(max(occurances))]] = max(occurances)
-        uniques.remove(uniques[occurances.index(max(occurances))])
-        occurances.remove(max(occurances))
+        number = uniques[occurrences.index(max(occurrences))]
+        top_five[number] = max(occurrences)
+        uniques.remove(number)
+        occurrences.remove(max(occurrences))
 
     return top_five
 
-
-print(counting())
+print(counting("otos.txt"))
