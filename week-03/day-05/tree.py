@@ -20,7 +20,7 @@ def branch(x, y, size):
 
 
 
-branch(150, 270, 60)
+branch(150, 270, 100)
 
 
 root.mainloop()
