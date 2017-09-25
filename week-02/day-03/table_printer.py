@@ -34,7 +34,6 @@ def col_width(content_list):
 
 
 def table_header(content_list):
-    print("+" + "-" * col_width(content_list) + "+---------------+----------+")
     print("| Ingredient" + " " * (col_width(content_list) - len(" Ingredient"))
      + "| Needs cooling | In stock |" )
 
@@ -53,15 +52,18 @@ def table_body(content_list):
             cool = "No"
         
         first_col = col_width(content_list) - len(keys[0]) - 1
-        second_col = 14 - len(cool)
+        sceond_col_max = 14
+        second_col = sceond_col_max - len(cool)
         stock = str(content_list[i][keys[0]])
-        third_col = 9 - len(stock)
+        third_col_max = 9
+        third_col = third_col_max - len(stock)
 
         print("| " + keys[0] + " " * first_col + "| " + cool + " " * second_col
          + "| " + stock + " " * third_col + "|")           
  
  
 def table_printer(content_list):
+    separator(content_list)
     table_header(content_list)
     separator(content_list)
     table_body(content_list)
