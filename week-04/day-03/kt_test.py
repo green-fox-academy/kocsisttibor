@@ -28,16 +28,26 @@ class TestSum(unittest.TestCase):
         test_list_of_ints = Sum()
         self.assertEqual(test_list_of_ints.sum_of_numbers(None), None)
 
-    # def test_sum_with_empty_list(self):                 #this is not running
-    #     test_list_of_ints = Sum()
-    #     with self.assertRaises(TypeError, ):
-    #         test_list_of_ints.sum_of_numbers()
+class TestAnagrammaAskinput(unittest.TestCase):
 
-# class TestAnagrammaAskinput(unittest.TestCase):
+    def test_anagramma_same_word(self):
+        test_instance = Anagramma()
+        self.assertTrue(test_instance.anagramma("alma", "alma"))
 
-#     def test_ask_input(self):
-#         anagramma = Anagramma()
-#         self.assertIsInstance(anagramma.ask_input[0], str)
+
+    def test_anagramma_letters_mixed(self):
+        test_instance = Anagramma()
+        self.assertTrue(test_instance.anagramma("alma", "lama"))
+
+
+    def test_not_anagramma(self):
+        test_instance = Anagramma()
+        self.assertFalse(test_instance.anagramma("alma", "bela"))
+
+    
+    def test_not_same_length(self):
+        test_instance = Anagramma()
+        self.assertFalse(test_instance.anagramma("alma", "la"))
 
 if __name__ == "__main__":
     unittest.main()

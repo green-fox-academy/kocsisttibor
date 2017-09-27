@@ -17,33 +17,8 @@ class Sum(object):
 
 class Anagramma(object):
 
-    def ask_input(self):
-        self.words = []
-        self.words.append(input("Please enter first word/phrase:"))
-        self.words.append(input("Please enter second word/phrase:"))
-        return(self.words)
-
-
-    def check(self, words):
-        space_one = self.words[0].count(" ")
-        space_two = self.words[1].count(" ")
-        word_one = list(self.words[0])
-        word_two = list(self.words[1])
-        for i in range(space_one):
-            word_one.remove(" ")
-        for i in range(space_two):
-            word_two.remove(" ")
-        word_one.sort()
-        word_two.sort()
-        if len(word_one) == len(word_two): 
-            for letter in range(len(word_one)):
-                if word_one[letter] != word_two[letter]:
-                    return False
-                    break
-        else:
+    def anagramma(self, string_1, string_2):
+        if len(string_1) != len(string_2):
             return False
-
-
-    def anagramma(self):
-        return self.check(self.ask_input()) != False
-
+        else:
+            return sorted(string_1) == sorted(string_2)
