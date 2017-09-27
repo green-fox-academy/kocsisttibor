@@ -1,5 +1,5 @@
 import unittest
-from kt_work import Apple, Sum, Anagramma
+from kt_work import Apple, Sum, Anagramma, CountLetter
 
 class TestGetApple(unittest.TestCase):
 
@@ -28,7 +28,7 @@ class TestSum(unittest.TestCase):
         test_list_of_ints = Sum()
         self.assertEqual(test_list_of_ints.sum_of_numbers(None), None)
 
-class TestAnagrammaAskinput(unittest.TestCase):
+class TestAnagramma(unittest.TestCase):
 
     def test_anagramma_same_word(self):
         test_instance = Anagramma()
@@ -48,6 +48,27 @@ class TestAnagrammaAskinput(unittest.TestCase):
     def test_not_same_length(self):
         test_instance = Anagramma()
         self.assertFalse(test_instance.anagramma("alma", "la"))
+
+class TestCountLetter(unittest.TestCase):
+
+    def test_single_letter(self):
+        test_instance = CountLetter()
+        self.assertEqual(test_instance.count_letter("apple")["a"], 1)
+
+
+    def test_double_letter(self):
+        test_instance = CountLetter()
+        self.assertEqual(test_instance.count_letter("apple")["p"], 2)
+
+
+    def test_one_letter(self):
+        test_instance = CountLetter()
+        self.assertEqual(test_instance.count_letter("a")["a"], 1)
+
+    
+    def test_no_letter(self):
+        test_instance = CountLetter()
+        self.assertEqual(test_instance.count_letter(""), {})
 
 if __name__ == "__main__":
     unittest.main()

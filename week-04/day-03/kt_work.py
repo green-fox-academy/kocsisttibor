@@ -1,6 +1,7 @@
 # https://github.com/greenfox-academy/teaching-materials/blob/master/workshop/testing/apples/python.md
 # https://github.com/greenfox-academy/teaching-materials/blob/master/workshop/testing/sum/python.md
 # https://github.com/greenfox-academy/teaching-materials/blob/master/workshop/testing/anagram/anagram.md
+# https://github.com/greenfox-academy/teaching-materials/blob/master/workshop/testing/count-letters/count-letters.md
 
 class Apple(object):
 
@@ -22,3 +23,14 @@ class Anagramma(object):
             return False
         else:
             return sorted(string_1) == sorted(string_2)
+
+class CountLetter(object):
+
+    def count_letter(self, string_1):
+        letters = {}
+        for i in string_1:
+            if i in letters.keys():
+                letters[i] += 1
+            else:
+                letters[i] = 1
+        return letters
