@@ -2,6 +2,7 @@
 # https://github.com/greenfox-academy/teaching-materials/blob/master/workshop/testing/sum/python.md
 # https://github.com/greenfox-academy/teaching-materials/blob/master/workshop/testing/anagram/anagram.md
 # https://github.com/greenfox-academy/teaching-materials/blob/master/workshop/testing/count-letters/count-letters.md
+# https://github.com/greenfox-academy/teaching-materials/blob/master/workshop/testing/fibonacci/fibonacci.md
 
 class Apple(object):
 
@@ -34,3 +35,11 @@ class CountLetter(object):
             else:
                 letters[i] = 1
         return letters
+
+class Fibonacci(object):
+
+    def fibonacci(self, number):
+        if number < 2:
+            return number
+        else:
+            return self.fibonacci(number - 2) + self.fibonacci(number - 1)

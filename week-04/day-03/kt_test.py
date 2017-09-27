@@ -1,5 +1,5 @@
 import unittest
-from kt_work import Apple, Sum, Anagramma, CountLetter
+from kt_work import Apple, Sum, Anagramma, CountLetter, Fibonacci
 
 class TestGetApple(unittest.TestCase):
 
@@ -69,6 +69,22 @@ class TestCountLetter(unittest.TestCase):
     def test_no_letter(self):
         test_instance = CountLetter()
         self.assertEqual(test_instance.count_letter(""), {})
+
+class TestFibonacci(unittest.TestCase):
+
+    def test_fibonacci_0(self):
+        test_instance = Fibonacci()
+        self.assertEqual(test_instance.fibonacci(0), 0)
+
+
+    def test_fibonacci_2(self):
+        test_instance = Fibonacci()
+        self.assertEqual(test_instance.fibonacci(2), 1)
+
+
+    def test_fibonacci_6(self):
+        test_instance = Fibonacci()
+        self.assertEqual(test_instance.fibonacci(6), 8)
 
 if __name__ == "__main__":
     unittest.main()
