@@ -14,8 +14,9 @@ class Aircraft(object):
 
     def refill(self, ammo_storage):
         if self.max_ammo - self.ammo_store <= ammo_storage:
+            filled_ammo = self.max_ammo - self.ammo_store
             self.ammo_store = self.max_ammo
-            return ammo_storage - (self.max_ammo - self.ammo_store)
+            return ammo_storage - filled_ammo
         else:
             self.ammo_store += ammo_storage
             return 0
@@ -57,8 +58,50 @@ class Carrier(object):
         elif aircraft.__class__.__name__ == "F35":
             self.F35_store.append(aircraft)
 
-f15 = F16()
-carrier = Carrier(300, 5000)
 
-carrier.add_aircraft(f15)
-print(carrier.F16_store)
+    def fill(self):
+        if self.ammo_storage == 0:
+            return "No ammo"
+        else:
+            for aircraft in self.F35_store:
+                self.ammo_storage = aircraft.refill(self.ammo_storage)
+                if self.ammo_storage == 0:
+                    break
+            for aircraft in self.F16_store:
+                self.ammo_storage = aircraft.refill(self.ammo_storage)
+                if self.ammo_storage == 0:
+                    break
+
+
+    def total_damage(self):
+        total_damage = 0
+        for aircraft in self.F16_store:
+            total_damage += aircraft.ammo_store * aircraft.base_damage
+        for aircraft in self.F35_store:
+            total_damage += aircraft.ammo_store * aircraft.base_damage
+        return total_damage
+
+
+    def get_status(self):
+        status = "\nHP: {}, Aircraft count: {}, Ammo: {}, Total damage: {}".format(self.health_point, len(self.F16_store) + len(self.F35_store), self.ammo_storage, self.total_damage())
+        status += "\n\nAircrafts:"
+        for aircraft in self.F35_store:
+            status += "\n" + str(aircraft.get_status())
+        for aircraft in self.F16_store:
+            status += "\n" + str(aircraft.get_status())
+        return status  
+
+f16_01 = F16()
+f16_02 = F16()
+f35_01 = F35()
+f35_02 = F35()
+carrier = Carrier(28, 5000)
+
+carrier.add_aircraft(f16_01)
+carrier.add_aircraft(f16_02)
+carrier.add_aircraft(f35_01)
+carrier.add_aircraft(f35_02)
+
+carrier.fill()
+
+print(carrier.get_status())
