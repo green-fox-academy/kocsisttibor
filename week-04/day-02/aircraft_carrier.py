@@ -42,3 +42,23 @@ class F35(Aircraft):
         self.max_ammo = 12
         self.base_damage = 50
 
+class Carrier(object):
+
+    def __init__(self, ammo_storage, health_point):
+        self.ammo_storage = ammo_storage
+        self.health_point = health_point
+        self.F16_store = []
+        self.F35_store = []
+
+
+    def add_aircraft(self, aircraft):
+        if aircraft.__class__.__name__ == "F16":
+            self.F16_store.append(aircraft)
+        elif aircraft.__class__.__name__ == "F35":
+            self.F35_store.append(aircraft)
+
+f15 = F16()
+carrier = Carrier(300, 5000)
+
+carrier.add_aircraft(f15)
+print(carrier.F16_store)
