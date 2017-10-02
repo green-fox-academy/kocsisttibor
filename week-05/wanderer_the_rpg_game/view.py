@@ -34,8 +34,37 @@ for j in range(len(map)):
     x = 0
     y += tile_size
 
+class Hero(object):
+
+    def __init__(self):
+        self.hero_image = None
+        self.x = 0
+        self.y = 0
+        self.hero_file = PhotoImage(file = "hero-down.png")
+
+   
+    def draw_hero(self, x, y):
+        self.hero_image = canvas.create_image(self.x, self.y, anchor=NW, image=self.hero_file)
 
 
+    def move(self, dx, dy):
+        canvas.move(self.hero_image, dx, dy )
+
+hero = Hero()
+hero.draw_hero(0, 0)
+
+def on_key_press(e):
+    if ( e.keysym == 'Up' ):
+        hero.move(0,-72)
+    elif( e.keysym == 'Down' ):
+        hero.move(0,72)
+    elif( e.keysym == 'Right' ):
+        hero.move(-72,0)
+    elif( e.keysym == 'Left' ):
+        hero.move(72,0)
+
+root.bind("<KeyPress>", on_key_press)
 canvas.pack()
 
+# canvas.focus_set()
 root.mainloop()
