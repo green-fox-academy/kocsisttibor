@@ -1,0 +1,51 @@
+Map
+Entity
+Game (Running, GameOver, EntitiesPosition)
+HUD (HeadsUpDisplay)
+Event handling(moving)
+Fight
+
+
+Map() - can be class
+list in lists
+method is_wall
+method get_tile
+method get_cell(x, y) -> string: wall/field/end_of_map
+
+Entity class
+x, y attributes
+method random_move -> to call on every entity
+entity position declaration not in pixels, but in units (tiles: wall or field)
+method move(direction)
+Hero(Entity)
+  self.image: "hero.png"
+Skeleton(Entity)
+Boss(Entity)
+
+Game
+init:
+  self.map to instantialize a map object
+  running: boolean -> stops the game if false
+  entities (object) in list: they have position attribute
+  hero (object) separately <- it is moved by player, while others are moved autpmatically
+  method keyboard handler - evaluates key presses
+	calls hero
+	calls all entities
+
+View
+init:
+  canvas related code
+  display: call root.mainloop
+method draw map
+method draw HUD
+method draw entity
+tile size: 72px
+floor/field
+
+Game init process - sequency diagramm
+0. step
+  Map()
+  View()
+    view.draw_map(self.map)
+
+
