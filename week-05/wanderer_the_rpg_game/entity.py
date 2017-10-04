@@ -58,9 +58,9 @@ class Skeleton(Entity):
         self.skeleton_image = None
         self.skeleton_file = PhotoImage(file = "skeleton.png")
         self.canvas = canvas
-        self.hp = 20 + 3 * self.dice()
-        self.dp = 2 * self.dice()
-        self.sp = 5 + 6 * self.dice()
+        self.hp = 2 * self.level * self.dice()
+        self.dp = self.level / 2 * self.dice()
+        self.sp = self.level * self.dice()
 
 
     def draw(self, spots):
@@ -75,6 +75,9 @@ class Boss(Entity):
         self.boss_image = None
         self.boss_file = PhotoImage(file = "boss.png")
         self.canvas = canvas
+        self.hp = 2 * self.level * self.dice() + self.dice()
+        self.dp = self.level / 2 * self.dice() + self.dice() / 2
+        self.sp = self.level * self.dice() + self.level
 
 
     def draw(self, spot):
