@@ -1,4 +1,5 @@
 from tkinter import *
+from view import Map
 
 class Entity(object):
 
@@ -39,3 +40,21 @@ class Hero(Entity):
             self.canvas.itemconfig(self.hero_image, image=self.hero_file_right)
         elif direction == "left":
             self.canvas.itemconfig(self.hero_image, image=self.hero_file_left)
+
+class Skeleton(Entity):
+
+    def __init__(self, canvas):
+        self.hero_image = None
+        self.skeleton_file = PhotoImage(file = "skeleton.png")
+        self.canvas = canvas
+
+
+
+    def draw(self, spots):
+        for i in range(len(spots)):
+            print(spots[i])
+            self.canvas.create_image(spots[i][0], spots[i][1], anchor=NW, image=self.skeleton_file)
+
+
+    def place_on_map(self):
+        pass

@@ -1,6 +1,6 @@
 from tkinter import *
 from view import Map
-from entity import Hero
+from entity import Hero, Skeleton
 
 # Game class
 
@@ -22,6 +22,9 @@ class Game(object):
         self.map.draw_map(canvas)
         self.hero = Hero(canvas)
         self.hero.draw(0, 0)
+        self.skeleton = Skeleton(canvas)
+        self.skeleton_number = 3
+        self.skeleton.draw(self.map.create_skeleton_spots(self.skeleton_number))
 
 
         root.bind("<KeyPress>", self.on_key_press)

@@ -1,4 +1,5 @@
 from tkinter import *
+from random import randint
 
 class Map(object):
 
@@ -40,3 +41,14 @@ class Map(object):
             return self.map[cell_y][cell_x] == 1
         else:
             return True
+
+
+    def create_skeleton_spots(self, skeleton_number):
+        spots = []
+        while len(spots) != skeleton_number:
+            y = randint(0, len(self.map) - 1)
+            x = randint(0, len(self.map[0]) - 1)
+            if self.map[y][x] == 0 and [x, y] not in spots:
+                spots.append([x * self.tile_size, y * self.tile_size])
+        print(spots)
+        return spots
