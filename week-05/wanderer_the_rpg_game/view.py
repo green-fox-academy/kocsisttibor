@@ -1,10 +1,5 @@
 from tkinter import *
 
-# root = Tk()
-# canvas_height = 720
-# canvas_width = 720
-# canvas = Canvas(root, width=canvas_width, height=canvas_height)
-
 class Map(object):
 
     def __init__(self):
@@ -37,14 +32,11 @@ class Map(object):
             self.x = 0
             self.y += self.tile_size
 
-
-# mapp_a = Map()
-# mapp_a.draw_map()
-
-# canvas.pack()
-
-# canvas.focus_set()
-# root.mainloop()
-
-
-
+    
+    def is_wall(self, x, y):
+        cell_x = int(x / self.tile_size)
+        cell_y = int(y / self.tile_size)
+        if cell_x >= 0 and cell_x < len(self.map[0]) and cell_y >= 0 and cell_y < len(self.map):
+            return self.map[cell_y][cell_x] == 1
+        else:
+            return True

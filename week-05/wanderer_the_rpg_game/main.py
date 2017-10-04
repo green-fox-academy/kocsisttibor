@@ -29,16 +29,19 @@ class Game(object):
         root.mainloop()
 
 
-
     def on_key_press(self, e):
         if ( e.keysym == 'Up' ):
-            self.hero.move(0,-72)
+            if self.map.is_wall(self.hero.x, self.hero.y - self.map.tile_size) == False:
+                self.hero.move(0,-self.map.tile_size)
         elif( e.keysym == 'Down' ):
-            self.hero.move(0,72)
+            if self.map.is_wall(self.hero.x, self.hero.y + self.map.tile_size) == False:
+                self.hero.move(0,self.map.tile_size)
         elif( e.keysym == 'Right' ):
-            self.hero.move(72,0)
+            if self.map.is_wall(self.hero.x + self.map.tile_size, self.hero.y) == False:
+                self.hero.move(self.map.tile_size,0)
         elif( e.keysym == 'Left' ):
-            self.hero.move(-72,0)
+            if self.map.is_wall(self.hero.x - self.map.tile_size, self.hero.y) == False:
+                self.hero.move(-self.map.tile_size,0)
 
 game = Game()
 

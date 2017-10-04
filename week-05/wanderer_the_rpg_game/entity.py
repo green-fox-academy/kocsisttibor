@@ -23,5 +23,5 @@ class Hero(Entity):
 
     def move(self, dx, dy):
         self.canvas.move(self.hero_image, dx, dy )
-
-
+        self.x += dx
+        self.y += dy
