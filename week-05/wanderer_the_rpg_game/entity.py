@@ -44,17 +44,23 @@ class Hero(Entity):
 class Skeleton(Entity):
 
     def __init__(self, canvas):
-        self.hero_image = None
+        self.skeleton_image = None
         self.skeleton_file = PhotoImage(file = "skeleton.png")
         self.canvas = canvas
 
 
-
     def draw(self, spots):
         for i in range(len(spots)):
-            print(spots[i])
-            self.canvas.create_image(spots[i][0], spots[i][1], anchor=NW, image=self.skeleton_file)
+            self.skeleton_image = self.canvas.create_image(spots[i][0], spots[i][1], anchor=NW, image=self.skeleton_file)
 
 
-    def place_on_map(self):
-        pass
+class Boss(Entity):
+
+    def __init__(self, canvas):
+        self.boss_image = None
+        self.boss_file = PhotoImage(file = "boss.png")
+        self.canvas = canvas
+
+
+    def draw(self, spot):
+        self.boss_image = self.canvas.create_image(spot[0], spot[1], anchor=NW, image=self.boss_file)
