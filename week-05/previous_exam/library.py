@@ -19,11 +19,13 @@ class BookShelf(object):
 
 
     def remove(self, title):
+        books_removed = 0
         for book in self.list_of_books:
             if book.title == title:
                 self.list_of_books.remove(book)
-            else:
-                return "This book is missing."
+                books_removed += 1
+        if books_removed == 0:
+            return "This book is missing."
 
 
     def get_earliest_release(self):
