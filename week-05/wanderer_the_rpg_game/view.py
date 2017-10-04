@@ -51,3 +51,17 @@ class Map(object):
             if self.map[y][x] == 0 and [x, y] not in spots and [x, y] != [0, 0]:
                 spots.append([x * self.tile_size, y * self.tile_size])
         return spots
+
+class Hud(object):
+
+    def __init__(self):
+        self.x = 0
+        self.y = 0
+
+
+    def draw_hud(self, canvas, x, y, level, hp, dp, sp):
+        canvas.create_text(x, y, font=(12), anchor=NW, text=" Hero")
+        canvas.create_text(x, y + 20, font=(12), anchor=NW, text=" Level "+str(level))
+        canvas.create_text(x, y + 40, font=(12), anchor=NW, text=" HP: "+str(hp))
+        canvas.create_text(x, y + 60, font=(12), anchor=NW, text=" DP: "+str(dp))
+        canvas.create_text(x, y + 80, font=(12), anchor=NW, text=" SP: "+str(sp))
