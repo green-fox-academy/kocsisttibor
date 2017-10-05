@@ -63,9 +63,9 @@ class Skeleton(Entity):
         self.sp = self.level * self.dice()
 
 
-    def draw(self, spots):
-        for i in range(len(spots)):
-            self.skeleton_image = self.canvas.create_image(spots[i][0], spots[i][1], anchor=NW, image=self.skeleton_file)
+    def draw(self, skeleton_number):
+        for i in range(len(skeleton_number)):
+            self.skeleton_image = self.canvas.create_image(skeleton_number[i].x, skeleton_number[i].y, anchor=NW, image=self.skeleton_file)
 
 
 class Boss(Entity):
