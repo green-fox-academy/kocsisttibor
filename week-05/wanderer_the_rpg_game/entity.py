@@ -8,6 +8,7 @@ class Entity(object):
         self.x = 0
         self.y = 0
         self.level = 1
+        self.blood = PhotoImage(file = "blood.png")
 
 
     def dice(self):
@@ -26,7 +27,8 @@ class Hero(Entity):
         self.hero_file_right = PhotoImage(file = "hero-right.png")
         self.hero_file_left = PhotoImage(file = "hero-left.png")
         self.canvas = canvas
-        self.hp = 20 + 3 * self.dice()
+        self.max_hp = 20 + 3 * self.dice()
+        self.hp = self.max_hp
         self.dp = 2 * self.dice()
         self.sp = 5 + 6 * self.dice()
 
@@ -61,11 +63,16 @@ class Skeleton(Entity):
         self.hp = 2 * self.level * self.dice()
         self.dp = self.level / 2 * self.dice()
         self.sp = self.level * self.dice()
+        self.skeleton_marker = ["skeleton_a", "skeleton_b", "skeleton_c", "skeleton_d", "skeleton_e", "skeleton_f"]
 
 
     def draw(self, skeleton_number):
         for i in range(len(skeleton_number)):
-            self.skeleton_image = self.canvas.create_image(skeleton_number[i].x, skeleton_number[i].y, anchor=NW, image=self.skeleton_file)
+            self.skeleton_image = self.canvas.create_image(skeleton_number[i].x, skeleton_number[i].y, anchor=NW, image=self.skeleton_file, tags=self.skeleton_marker[i])
+
+
+    def delete(self, skeleton_id):
+        self.canvas.itemconfig(self.skeleton_marker[skeleton_id], image=self.blood)
 
 
 class Boss(Entity):
@@ -82,3 +89,8 @@ class Boss(Entity):
 
     def draw(self, spot):
         self.boss_image = self.canvas.create_image(spot[0], spot[1], anchor=NW, image=self.boss_file)
+
+
+    def delete(self):
+        # self.canvas.delete(self.boss_image)
+        self.canvas.itemconfig(self.boss_image, image=self.blood)

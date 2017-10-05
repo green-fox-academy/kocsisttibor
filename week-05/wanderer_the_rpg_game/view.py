@@ -48,8 +48,9 @@ class Map(object):
         while len(spots) != skeleton_number:
             y = randint(0, len(self.map) - 1)
             x = randint(0, len(self.map[0]) - 1)
-            if self.map[y][x] == 0 and [x, y] not in spots and [x, y] != [0, 0]:
+            if self.map[y][x] == 0 and [x * self.tile_size, y * self.tile_size] not in spots and [x, y] != [0, 0]:
                 spots.append([x * self.tile_size, y * self.tile_size])
+        print(spots)
         return spots
 
 class Hud(object):

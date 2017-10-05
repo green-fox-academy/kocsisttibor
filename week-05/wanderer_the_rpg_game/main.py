@@ -22,17 +22,20 @@ class Game(object):
         self.map.draw_map(self.canvas)
         self.hero = Hero(self.canvas)
         self.hero.draw(0, 0)
+        self.hero_has_key = False
         self.skeleton_number = 3
         self.spots = self.map.create_enemy_spots(self.skeleton_number + 1)
         self.skeletons = []
         self.create_skeletons()
         self.add_skeleton_coordinates()
-        self.boss = Boss(self.canvas)
         self.skeletons[0].draw(self.skeletons)
+        self.boss = Boss(self.canvas)
         self.boss.draw(self.spots[-1])
+        self.boss_is_dead = False
+        self.enemies = []
+        self.enlist_enemies()
         self.hud = Hud()
         self.hud.draw_hud(self.canvas, 720, 0, self.hero.level, self.hero.hp, self.hero.dp, self.hero.sp)
-        self.fight(self.hero, self.boss)
 
 
         root.bind("<KeyPress>", self.on_key_press)
@@ -58,7 +61,8 @@ class Game(object):
             if self.map.is_wall(self.hero.x - self.map.tile_size, self.hero.y) == False:
                 self.hero.move(-self.map.tile_size,0)
         elif( e.keysym == 'space'):
-            print("Space")
+            if [self.hero.x, self.hero.y] in self.spots:
+                self.fight(self.hero, self.enemies[self.spots.index([self.hero.x, self.hero.y])])
 
 
     def create_skeletons(self):
@@ -70,6 +74,12 @@ class Game(object):
         for i, skeleton in zip(self.spots, self.skeletons):
             skeleton.x = i[0]
             skeleton.y = i[1]
+
+    
+    def enlist_enemies(self):
+        for skeleton in self.skeletons:
+            self.enemies.append(skeleton)
+        self.enemies.append(self.boss)
 
 
     def is_strike(self, attacker, defender):
@@ -90,9 +100,29 @@ class Game(object):
                 fighter_1, fighter_2 = fighter_2, fighter_1
             print(fighter_1.hp, fighter_2.hp)
         if fighter_1.hp > 0:
-            print("Leveling")
+            self.level_up()
+            if fighter_2 == self.boss:
+                self.boss.delete()
+                self.boss_is_dead = True
+                self.enter_next_area()
+            for i in self.skeletons:
+                if fighter_2 == i:
+                    i.delete(self.spots.index([self.hero.x, self.hero.y]))
+                    self.enter_next_area()
         else:
             print("Game over")
+
+
+    def level_up(self):
+        self.hero.max_hp += self.hero.dice()
+        self.hero.dp += self.hero.dice()
+        self.hero.sp += self.hero.dice()
+
+
+    def enter_next_area(self):
+        if self.hero_has_key == True and self.boss_is_dead == True:
+            print("Enter next area")
+    
 
 
 game = Game()
