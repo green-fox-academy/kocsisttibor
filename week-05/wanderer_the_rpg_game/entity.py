@@ -64,6 +64,7 @@ class Skeleton(Entity):
         self.dp = self.level / 2 * self.dice()
         self.sp = self.level * self.dice()
         self.skeleton_marker = ["skeleton_a", "skeleton_b", "skeleton_c", "skeleton_d", "skeleton_e", "skeleton_f"]
+        self.key = False
 
 
     def draw(self, skeleton_number):

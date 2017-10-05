@@ -58,11 +58,25 @@ class Hud(object):
     def __init__(self):
         self.x = 0
         self.y = 0
+        self.key_file = PhotoImage(file = "key.png")
+        self.hud1 = None
+        self.hud2 = None
+        self.hud3 = None
+        self.hud4 = None
 
 
     def draw_hud(self, canvas, x, y, level, hp, dp, sp):
         canvas.create_text(x, y, font=(12), anchor=NW, text=" Hero")
-        canvas.create_text(x, y + 20, font=(12), anchor=NW, text=" Level "+str(level))
-        canvas.create_text(x, y + 40, font=(12), anchor=NW, text=" HP: "+str(hp))
-        canvas.create_text(x, y + 60, font=(12), anchor=NW, text=" DP: "+str(dp))
-        canvas.create_text(x, y + 80, font=(12), anchor=NW, text=" SP: "+str(sp))
+        self.hud1 = canvas.create_text(x, y + 20, font=(12), anchor=NW, text=" Level "+str(level))
+        self.hud2 = canvas.create_text(x, y + 40, font=(12), anchor=NW, text=" HP: "+str(hp))
+        self.hud3 = canvas.create_text(x, y + 60, font=(12), anchor=NW, text=" DP: "+str(dp))
+        self.hud4 = canvas.create_text(x, y + 80, font=(12), anchor=NW, text=" SP: "+str(sp))
+
+
+    def print_key(self, canvas, x, y):
+        self.hud5 = canvas.create_image(x, y + 100, anchor=NW, image=self.key_file)
+
+
+    def next_level(self, canvas, x, y):
+        self.next_level_bckgr = canvas.create_rectangle(x, y, x + 350, y + 150, fill="tomato")
+        self.next_level = canvas.create_text(x, y, font=(55), anchor=NW, text="Congrats! Press space for next level.")
