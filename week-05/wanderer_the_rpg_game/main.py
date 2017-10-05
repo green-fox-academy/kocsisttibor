@@ -113,19 +113,16 @@ class Game(object):
             self.strike(fighter_1, fighter_2)
             if fighter_1.hp > 0 and fighter_2.hp > 0:
                 fighter_1, fighter_2 = fighter_2, fighter_1
-            print(fighter_1.hp, fighter_2.hp)
         if fighter_1.hp > 0:
             self.level_up()
             if fighter_2 == self.boss:
                 self.boss.delete()
                 self.boss_is_dead = True
-                print("boss_is_dead")
                 self.enter_next_area()
             for i in self.skeletons:
                 if fighter_2 == i:
                     if i.key == True:
                         self.hero_has_key = True
-                        print("hero_has_key")
                         self.hud.draw_inventory(self.canvas, self.hud_x, self.hud_y)
                     i.delete(self.spots.index([self.hero.x, self.hero.y]))
                     self.enter_next_area()
