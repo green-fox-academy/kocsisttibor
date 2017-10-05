@@ -32,6 +32,7 @@ class Game(object):
         self.boss.draw(self.spots[-1])
         self.hud = Hud()
         self.hud.draw_hud(self.canvas, 720, 0, self.hero.level, self.hero.hp, self.hero.dp, self.hero.sp)
+        self.fight(self.hero, self.boss)
 
 
         root.bind("<KeyPress>", self.on_key_press)
@@ -56,6 +57,8 @@ class Game(object):
             self.hero.configure("left")
             if self.map.is_wall(self.hero.x - self.map.tile_size, self.hero.y) == False:
                 self.hero.move(-self.map.tile_size,0)
+        elif( e.keysym == 'space'):
+            print("Space")
 
 
     def create_skeletons(self):
@@ -67,6 +70,30 @@ class Game(object):
         for i, skeleton in zip(self.spots, self.skeletons):
             skeleton.x = i[0]
             skeleton.y = i[1]
+
+
+    def is_strike(self, attacker, defender):
+        return attacker.sp + 2 * attacker.dice() > defender.dp
+
+
+    def strike(self, attacker, defender):
+        print("attacker.hp: ", attacker.hp, "defender.hp: ", defender.hp)
+        if self.is_strike(attacker, defender):
+            defender.hp -= (attacker.sp + 2 * attacker.dice()) - defender.dp
+            print("attacker.hp: ", attacker.hp, "defender.hp: ", defender.hp)
+
+
+    def fight(self, fighter_1, fighter_2):      #fight will be called always wiht hero as fighter_1
+        while fighter_1.hp > 0 and fighter_2.hp > 0:
+            self.strike(fighter_1, fighter_2)
+            if fighter_1.hp > 0 and fighter_2.hp > 0:
+                fighter_1, fighter_2 = fighter_2, fighter_1
+            print(fighter_1.hp, fighter_2.hp)
+        if fighter_1.hp > 0:
+            print("Leveling")
+        else:
+            print("Game over")
+
 
 game = Game()
 
