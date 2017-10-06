@@ -98,14 +98,21 @@ class Game(object):
 
 
     def is_strike(self, attacker, defender):
-        return attacker.sp + 2 * attacker.dice() > defender.dp
+        var = attacker.sp + 2 * attacker.dice() > defender.dp
+        print(var)
+        return var
 
 
     def strike(self, attacker, defender):
-        print("attacker.hp: ", attacker.hp, "defender.hp: ", defender.hp)
+        print("before first strike attacker.hp: ", attacker.hp, "defender.hp: ", defender.hp)
         if self.is_strike(attacker, defender):
-            defender.hp -= (attacker.sp + 2 * attacker.dice()) - defender.dp
-            print("attacker.hp: ", attacker.hp, "defender.hp: ", defender.hp)
+            print("def hp", defender.hp)
+            dice = attacker.dice()
+            print("dice", dice)
+            print("att sp: ", attacker.sp)
+            print("def dp", defender.dp)
+            defender.hp -= (attacker.sp + 2 * dice) - defender.dp
+            print("after strike attacker.hp: ", attacker.hp, "defender.hp: ", defender.hp)
 
 
     def fight(self, fighter_1, fighter_2):      #fight will be called always with hero as fighter_1
@@ -113,7 +120,9 @@ class Game(object):
             self.strike(fighter_1, fighter_2)
             if fighter_1.hp > 0 and fighter_2.hp > 0:
                 fighter_1, fighter_2 = fighter_2, fighter_1
-        if fighter_1.hp > 0:
+        self.hud.update_hud()
+        self.hud.update_enemy_stat()
+        if self.hero.hp > 0:
             self.level_up()
             if fighter_2 == self.boss:
                 self.boss.delete()
@@ -127,6 +136,8 @@ class Game(object):
                     i.delete(self.spots.index([self.hero.x, self.hero.y]))
                     self.enter_next_area()
         else:
+            self.hud.update_hud()
+            self.hud.update_enemy_stat()
             print("Game over")
 
 
