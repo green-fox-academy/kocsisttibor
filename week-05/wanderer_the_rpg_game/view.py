@@ -66,17 +66,38 @@ class Hud(object):
 
 
     def draw_hud(self, canvas, x, y, level, hp, dp, sp):
-        canvas.create_text(x, y, font=(12), anchor=NW, text=" Hero")
-        self.hud1 = canvas.create_text(x, y + 20, font=(12), anchor=NW, text=" Level "+str(level))
-        self.hud2 = canvas.create_text(x, y + 40, font=(12), anchor=NW, text=" HP: "+str(hp))
-        self.hud3 = canvas.create_text(x, y + 60, font=(12), anchor=NW, text=" DP: "+str(dp))
-        self.hud4 = canvas.create_text(x, y + 80, font=(12), anchor=NW, text=" SP: "+str(sp))
+        canvas.create_text(x, y + 10, font=("Helvetica", 14, "bold"), anchor=NW, text=" Hero")
+        canvas.create_line(x, y + 35, x + 100, y + 35, fill="#343D4A")
+        self.hud1 = canvas.create_text(x, y + 40, font=("Helvetica", 11, "italic"), anchor=NW, text=" Level "+str(level))
+        self.hud2 = canvas.create_text(x, y + 60, font=("Helvetica", 11, "italic"), anchor=NW, text=" HP: "+str(hp))
+        self.hud3 = canvas.create_text(x, y + 80, font=("Helvetica", 11, "italic"), anchor=NW, text=" DP: "+str(dp))
+        self.hud4 = canvas.create_text(x, y + 100, font=("Helvetica", 11, "italic"), anchor=NW, text=" SP: "+str(sp))
 
 
-    def print_key(self, canvas, x, y):
-        self.hud5 = canvas.create_image(x, y + 100, anchor=NW, image=self.key_file)
+    def draw_inventory(self, canvas, x, y):
+        self.inventory = canvas.create_text(x, y + 150, font=("Helvetica", 14, "bold"), anchor=NW, text=" Inventory")
+        self.inventory_image = canvas.create_image(x, y + 175, anchor=NW, image=self.key_file)
+
+
+    def draw_enemy_stat(self, canvas, x, y, enemy):
+        self.enemy_stat1 = canvas.create_text(x, y + 250, font=("Helvetica", 14, "bold"), anchor=NW, text=" "+enemy.__class__.__name__)
+        self.enemy_statline= canvas.create_line(x, y + 275, x + 100, y + 275, fill="#343D4A")
+        self.enemy_stat2 = canvas.create_text(x, y + 280, font=("Helvetica", 11, "italic"), anchor=NW, text=" Level "+str(enemy.level))
+        self.enemy_stat3 = canvas.create_text(x, y + 300, font=("Helvetica", 11, "italic"), anchor=NW, text=" HP: "+str(enemy.hp))
+        self.enemy_stat4 = canvas.create_text(x, y + 320, font=("Helvetica", 11, "italic"), anchor=NW, text=" DP: "+str(enemy.dp))
+        self.enemy_stat5 = canvas.create_text(x, y + 340, font=("Helvetica", 11, "italic"), anchor=NW, text=" SP: "+str(enemy.dp))
+
+
+    def clear_enemy_stat(self, canvas):
+        canvas.delete(self.enemy_stat1)
+        canvas.delete(self.enemy_statline)
+        canvas.delete(self.enemy_stat2)
+        canvas.delete(self.enemy_stat3)
+        canvas.delete(self.enemy_stat4)
+        canvas.delete(self.enemy_stat5)
 
 
     def next_level(self, canvas, x, y):
-        self.next_level_bckgr = canvas.create_rectangle(x, y, x + 350, y + 150, fill="tomato")
-        self.next_level = canvas.create_text(x, y, font=(55), anchor=NW, text="Congrats! Press space for next level.")
+        self.next_level_bckgr = canvas.create_rectangle(x, y, x + 450, y + 150, fill="#957740")
+        self.next_level = canvas.create_text(x, y + 10, font=("Helvetica", 45, "italic bold"), anchor=NW, text="     Congrats!")
+        self.next_level = canvas.create_text(x, y + 100, font=("Helvetica", 25, "italic"), anchor=NW, text="    Press space for next level.")

@@ -17,15 +17,12 @@ class Game(object):
     def __init__(self):
         root = Tk()
         canvas_height = 720
-        canvas_width = 780
+        canvas_width = 820
         self.hud_x = 720
         self.hud_y = 0
-        self.canvas = Canvas(root, width=canvas_width, height=canvas_height)
+        self.canvas = Canvas(root, width=canvas_width, height=canvas_height, bg = "#957740")
         self.map = Map()
         self.map.draw_map(self.canvas)
-        self.hero = Hero(self.canvas)
-        self.hero.draw(0, 0)
-        self.hero_has_key = False
         self.skeleton_number = 3
         self.spots = self.map.create_enemy_spots(self.skeleton_number + 1)
         self.skeletons = []
@@ -38,8 +35,12 @@ class Game(object):
         self.boss_is_dead = False
         self.enemies = []
         self.enlist_enemies()
+        self.hero = Hero(self.canvas)
+        self.hero.draw(0, 0)
+        self.hero_has_key = False
         self.hud = Hud()
         self.hud.draw_hud(self.canvas, self.hud_x, self.hud_y, self.hero.level, self.hero.hp, self.hero.dp, self.hero.sp)
+        self.enemy_stat_onscreen = False
 
 
         root.bind("<KeyPress>", self.on_key_press)
@@ -67,6 +68,12 @@ class Game(object):
         elif( e.keysym == 'space'):
             if [self.hero.x, self.hero.y] in self.spots:
                 self.fight(self.hero, self.enemies[self.spots.index([self.hero.x, self.hero.y])])
+        if [self.hero.x, self.hero.y] in self.spots and self.enemy_stat_onscreen == False:
+            self.hud.draw_enemy_stat(self.canvas, self.hud_x, self.hud_y, self.enemies[self.spots.index([self.hero.x, self.hero.y])])
+            self.enemy_stat_onscreen = True
+        if [self.hero.x, self.hero.y] not in self.spots and self.enemy_stat_onscreen == True:
+            self.hud.clear_enemy_stat(self.canvas)
+            self.enemy_stat_onscreen = False
 
 
     def create_skeletons(self):
@@ -101,25 +108,22 @@ class Game(object):
             print("attacker.hp: ", attacker.hp, "defender.hp: ", defender.hp)
 
 
-    def fight(self, fighter_1, fighter_2):      #fight will be called always wiht hero as fighter_1
+    def fight(self, fighter_1, fighter_2):      #fight will be called always with hero as fighter_1
         while fighter_1.hp > 0 and fighter_2.hp > 0:
             self.strike(fighter_1, fighter_2)
             if fighter_1.hp > 0 and fighter_2.hp > 0:
                 fighter_1, fighter_2 = fighter_2, fighter_1
-            print(fighter_1.hp, fighter_2.hp)
         if fighter_1.hp > 0:
             self.level_up()
             if fighter_2 == self.boss:
                 self.boss.delete()
                 self.boss_is_dead = True
-                print("boss_is_dead")
                 self.enter_next_area()
             for i in self.skeletons:
                 if fighter_2 == i:
                     if i.key == True:
                         self.hero_has_key = True
-                        print("hero_has_key")
-                        self.hud.print_key(self.canvas, self.hud_x, self.hud_y)
+                        self.hud.draw_inventory(self.canvas, self.hud_x, self.hud_y)
                     i.delete(self.spots.index([self.hero.x, self.hero.y]))
                     self.enter_next_area()
         else:
@@ -140,7 +144,7 @@ class Game(object):
 
     def enter_next_area(self):
         if self.hero_has_key == True and self.boss_is_dead == True:
-            self.hud.next_level(self.canvas, 50, 150)
+            self.hud.next_level(self.canvas, 150, 150)
 
 game = Game()
 

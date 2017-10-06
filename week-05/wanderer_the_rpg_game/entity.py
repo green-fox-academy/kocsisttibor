@@ -30,7 +30,7 @@ class Hero(Entity):
         self.max_hp = 20 + 3 * self.dice()
         self.hp = self.max_hp
         self.dp = 2 * self.dice()
-        self.sp = 5 + 6 * self.dice()
+        self.sp = 5 + self.dice()
 
    
     def draw(self, x, y):
