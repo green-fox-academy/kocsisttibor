@@ -22,10 +22,12 @@ class Hero(Entity):
         self.hero_image = None
         self.x = 0
         self.y = 0
-        self.hero_file_down = PhotoImage(file = "hero-down.png")
-        self.hero_file_up = PhotoImage(file = "hero-up.png")
-        self.hero_file_right = PhotoImage(file = "hero-right.png")
-        self.hero_file_left = PhotoImage(file = "hero-left.png")
+        self.hero_file = {
+            "down": PhotoImage(file = "hero-down.png"),
+            "up": PhotoImage(file = "hero-up.png"),
+            "right": PhotoImage(file = "hero-right.png"),
+            "left": PhotoImage(file = "hero-left.png")
+        }
         self.canvas = canvas
         self.max_hp = 20 + 3 * self.dice()
         self.hp = self.max_hp
@@ -34,7 +36,7 @@ class Hero(Entity):
 
    
     def draw(self, x, y):
-        self.hero_image = self.canvas.create_image(self.x, self.y, anchor=NW, image=self.hero_file_down)
+        self.hero_image = self.canvas.create_image(self.x, self.y, anchor=NW, image=self.hero_file["down"])
 
 
     def move(self, dx, dy):
@@ -44,14 +46,7 @@ class Hero(Entity):
 
 
     def configure(self, direction):
-        if direction == "up":
-            self.canvas.itemconfig(self.hero_image, image=self.hero_file_up)
-        elif direction == "down":
-            self.canvas.itemconfig(self.hero_image, image=self.hero_file_down)
-        elif direction == "right":
-            self.canvas.itemconfig(self.hero_image, image=self.hero_file_right)
-        elif direction == "left":
-            self.canvas.itemconfig(self.hero_image, image=self.hero_file_left)
+        self.canvas.itemconfig(self.hero_image, image=self.hero_file[direction])
 
 class Skeleton(Entity):
 
@@ -93,5 +88,4 @@ class Boss(Entity):
 
 
     def delete(self):
-        # self.canvas.delete(self.boss_image)
         self.canvas.itemconfig(self.boss_image, image=self.blood)
