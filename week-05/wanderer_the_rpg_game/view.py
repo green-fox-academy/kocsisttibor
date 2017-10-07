@@ -74,6 +74,10 @@ class Hud(object):
         self.hud4 = canvas.create_text(x, y + 100, font=("Helvetica", 11, "italic"), anchor=NW, text=" SP: "+str(sp))
 
 
+    def update_hud(self):
+        pass
+
+
     def draw_inventory(self, canvas, x, y):
         self.inventory = canvas.create_text(x, y + 150, font=("Helvetica", 14, "bold"), anchor=NW, text=" Inventory")
         self.inventory_image = canvas.create_image(x, y + 175, anchor=NW, image=self.key_file)
@@ -86,6 +90,10 @@ class Hud(object):
         self.enemy_stat3 = canvas.create_text(x, y + 300, font=("Helvetica", 11, "italic"), anchor=NW, text=" HP: "+str(enemy.hp))
         self.enemy_stat4 = canvas.create_text(x, y + 320, font=("Helvetica", 11, "italic"), anchor=NW, text=" DP: "+str(enemy.dp))
         self.enemy_stat5 = canvas.create_text(x, y + 340, font=("Helvetica", 11, "italic"), anchor=NW, text=" SP: "+str(enemy.dp))
+
+
+    def update_enemy_stat(self):
+        pass
 
 
     def clear_enemy_stat(self, canvas):

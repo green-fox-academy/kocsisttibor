@@ -41,6 +41,7 @@ class Game(object):
         self.hud = Hud()
         self.hud.draw_hud(self.canvas, self.hud_x, self.hud_y, self.hero.level, self.hero.hp, self.hero.dp, self.hero.sp)
         self.enemy_stat_onscreen = False
+        self.deleted_enemies = []
 
 
         root.bind("<KeyPress>", self.on_key_press)
@@ -68,7 +69,7 @@ class Game(object):
         elif( e.keysym == 'space'):
             if [self.hero.x, self.hero.y] in self.spots:
                 self.fight(self.hero, self.enemies[self.spots.index([self.hero.x, self.hero.y])])
-        if [self.hero.x, self.hero.y] in self.spots and self.enemy_stat_onscreen == False:
+        if [self.hero.x, self.hero.y] in self.spots and [self.hero.x, self.hero.y] not in self.deleted_enemies and self.enemy_stat_onscreen == False:
             self.hud.draw_enemy_stat(self.canvas, self.hud_x, self.hud_y, self.enemies[self.spots.index([self.hero.x, self.hero.y])])
             self.enemy_stat_onscreen = True
         if [self.hero.x, self.hero.y] not in self.spots and self.enemy_stat_onscreen == True:
@@ -115,7 +116,7 @@ class Game(object):
             print("after strike attacker.hp: ", attacker.hp, "defender.hp: ", defender.hp)
 
 
-    def fight(self, fighter_1, fighter_2):      #fight will be called always with hero as fighter_1
+    def fight(self, fighter_1, fighter_2):
         while fighter_1.hp > 0 and fighter_2.hp > 0:
             self.strike(fighter_1, fighter_2)
             if fighter_1.hp > 0 and fighter_2.hp > 0:
@@ -124,12 +125,13 @@ class Game(object):
         self.hud.update_enemy_stat()
         if self.hero.hp > 0:
             self.level_up()
-            if fighter_2 == self.boss:
+            self.deleted_enemies.append([self.hero.x, self.hero.y])
+            if self.boss.hp <= 0:
                 self.boss.delete()
                 self.boss_is_dead = True
                 self.enter_next_area()
             for i in self.skeletons:
-                if fighter_2 == i:
+                if fighter_2 == i:          #needs to be checked
                     if i.key == True:
                         self.hero_has_key = True
                         self.hud.draw_inventory(self.canvas, self.hud_x, self.hud_y)
