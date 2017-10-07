@@ -42,6 +42,7 @@ class Game(object):
         self.hud.draw_hud(self.canvas, self.hud_x, self.hud_y, self.hero.level, self.hero.hp, self.hero.dp, self.hero.sp)
         self.enemy_stat_onscreen = False
         self.deleted_enemies = []
+        self.hero_can_move = True
 
 
         root.bind("<KeyPress>", self.on_key_press)
@@ -50,28 +51,29 @@ class Game(object):
 
 
     def on_key_press(self, e):
-        if ( e.keysym == 'Up' ):
-            self.hero.configure("up")
-            if self.map.is_wall(self.hero.x, self.hero.y - self.map.tile_size) == False:
-                self.hero.move(0,-self.map.tile_size)
-        elif( e.keysym == 'Down' ):
-            self.hero.configure("down")
-            if self.map.is_wall(self.hero.x, self.hero.y + self.map.tile_size) == False:
-                self.hero.move(0,self.map.tile_size)
-        elif( e.keysym == 'Right' ):
-            self.hero.configure("right")
-            if self.map.is_wall(self.hero.x + self.map.tile_size, self.hero.y) == False:
-                self.hero.move(self.map.tile_size,0)
-        elif( e.keysym == 'Left' ):
-            self.hero.configure("left")
-            if self.map.is_wall(self.hero.x - self.map.tile_size, self.hero.y) == False:
-                self.hero.move(-self.map.tile_size,0)
-        elif( e.keysym == 'space'):
-            if [self.hero.x, self.hero.y] in self.spots:
-                self.fight(self.hero, self.enemies[self.spots.index([self.hero.x, self.hero.y])])
+        if self.hero_can_move == True:
+            if (e.keysym == "Up"):
+                self.hero.configure("up")
+                if self.map.is_wall(self.hero.x, self.hero.y - self.map.tile_size) == False:
+                    self.hero.move(0,-self.map.tile_size)
+            elif(e.keysym == "Down"):
+                self.hero.configure("down")
+                if self.map.is_wall(self.hero.x, self.hero.y + self.map.tile_size) == False:
+                    self.hero.move(0,self.map.tile_size)
+            elif(e.keysym == "Right"):
+                self.hero.configure("right")
+                if self.map.is_wall(self.hero.x + self.map.tile_size, self.hero.y) == False:
+                    self.hero.move(self.map.tile_size,0)
+            elif(e.keysym == "Left"):
+                self.hero.configure("left")
+                if self.map.is_wall(self.hero.x - self.map.tile_size, self.hero.y) == False:
+                    self.hero.move(-self.map.tile_size,0)
+        if(e.keysym == "space") and [self.hero.x, self.hero.y] in self.spots:
+            self.fight(self.hero, self.enemies[self.spots.index([self.hero.x, self.hero.y])])
         if [self.hero.x, self.hero.y] in self.spots and [self.hero.x, self.hero.y] not in self.deleted_enemies and self.enemy_stat_onscreen == False:
             self.hud.draw_enemy_stat(self.canvas, self.hud_x, self.hud_y, self.enemies[self.spots.index([self.hero.x, self.hero.y])])
             self.enemy_stat_onscreen = True
+            self.hero_can_move = False
         if [self.hero.x, self.hero.y] not in self.spots and self.enemy_stat_onscreen == True:
             self.hud.clear_enemy_stat(self.canvas)
             self.enemy_stat_onscreen = False
@@ -126,6 +128,7 @@ class Game(object):
         if self.hero.hp > 0:
             self.level_up()
             self.deleted_enemies.append([self.hero.x, self.hero.y])
+            self.hero_can_move = True
             if self.boss.hp <= 0:
                 self.boss.delete()
                 self.boss_is_dead = True
@@ -158,6 +161,7 @@ class Game(object):
     def enter_next_area(self):
         if self.hero_has_key == True and self.boss_is_dead == True:
             self.hud.next_level(self.canvas, 150, 150)
+            self.hero_can_move = False
 
 game = Game()
 
