@@ -3,15 +3,6 @@ from view import Map, Hud
 from entity import Hero, Skeleton, Boss
 from random import randint
 
-# Game class
-
-    # init
-    # - create tkinter base objects
-    # - map instance
-    # - hero instance
-
-    # call keyboard listener
-
 class Game(object):
 
     def __init__(self):
@@ -35,6 +26,8 @@ class Game(object):
         
         self.boss = Boss(self.canvas)
         self.boss.draw(self.spots[-1])
+        self.boss.x = self.spots[-1][0]
+        self.boss.y = self.spots[-1][1]
         self.boss_is_dead = False
         
         self.enemies = []
@@ -70,6 +63,7 @@ class Game(object):
                     if self.map.is_wall(self.hero.x + self.arrows[i][1] * self.map.tile_size,\
                                         self.hero.y + self.arrows[i][2] * self.map.tile_size) == False:
                         self.hero.move(self.arrows[i][1] * self.map.tile_size, self.arrows[i][2] * self.map.tile_size)
+                    self.spots[-1] = self.boss.move()
         self.check_after_arrows()
         if(e.keysym == "space") and [self.hero.x, self.hero.y] in self.spots:
             self.fight(self.hero, self.enemies[self.spots.index([self.hero.x, self.hero.y])])

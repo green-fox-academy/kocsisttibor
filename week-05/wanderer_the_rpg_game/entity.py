@@ -9,6 +9,7 @@ class Entity(object):
         self.y = 0
         self.level = 1
         self.blood = PhotoImage(file = "blood.png")
+        self.map = Map()
 
 
     def dice(self):
@@ -85,6 +86,35 @@ class Boss(Entity):
 
     def draw(self, spot):
         self.boss_image = self.canvas.create_image(spot[0], spot[1], anchor=NW, image=self.boss_file)
+
+
+    def move_options(self):
+        move_options = []
+        print("self x, y:", self.x, self.y)
+        print("checking: ", self.x + self.map.tile_size, self.y, self.map.is_wall(self.x + self.map.tile_size, self.y))
+        print("checking: ", self.x - self.map.tile_size, self.y, self.map.is_wall(self.x - self.map.tile_size, self.y))
+        print("checking: ", self.x, self.y+ self.map.tile_size, self.map.is_wall(self.x , self.y+ self.map.tile_size))
+        print("checking: ", self.x, self.y- self.map.tile_size, self.map.is_wall(self.x , self.y- self.map.tile_size))
+        if self.map.is_wall(self.x + self.map.tile_size, self.y) == False:
+            move_options.append([self.map.tile_size, 0])
+        if self.map.is_wall(self.x - self.map.tile_size, self.y) == False:
+            move_options.append([-self.map.tile_size, 0])
+        if self.map.is_wall(self.x, self.y + self.map.tile_size) == False:
+            move_options.append([0, self.map.tile_size])
+        if self.map.is_wall(self.x, self.y - self.map.tile_size) == False:
+            move_options.append([0, -self.map.tile_size])
+        print("options: ", move_options)
+        return move_options
+
+   
+    def move(self):
+        move_coords = self.move_options()[randint(0, len(self.move_options()) - 1)]
+        print("move_coords: ", move_coords)
+        self.canvas.move(self.boss_image, move_coords[0], move_coords[1] )
+        self.x += move_coords[0]
+        self.y += move_coords[1]
+        print("boss coords: ", self.x, self.y)
+        return [self.x, self.y]
 
 
     def delete(self):
