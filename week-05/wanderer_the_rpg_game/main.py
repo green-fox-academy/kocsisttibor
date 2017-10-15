@@ -22,7 +22,7 @@ class Game(object):
         self.create_skeletons()
         self.add_skeleton_coordinates()
         self.add_key_to_skeleton()
-        self.skeletons[0].draw(self.skeletons)
+        self.draw_skeletons()
         
         self.boss = Boss(self.canvas)
         self.boss.draw(self.spots[-1])
@@ -64,7 +64,10 @@ class Game(object):
                                         self.hero.y + self.arrows[i][2] * self.map.tile_size) == False:
                         self.hero.move(self.arrows[i][1] * self.map.tile_size, self.arrows[i][2] * self.map.tile_size)
                     if self.boss.hp > 0 and [self.hero.x, self.hero.y] != self.spots[-1]:
-                        self.spots[-1] = self.boss.move()
+                        self.spots[-1] = self.boss.move(self.spots)
+                    for i in range(self.skeleton_number):
+                        if self.skeletons[i].hp > 0 and [self.hero.x, self.hero.y] != self.spots[i]:
+                            self.spots[i] = self.skeletons[i].move(self.spots)
         self.check_after_arrows()
         if(e.keysym == "space") and [self.hero.x, self.hero.y] in self.spots:
             self.fight(self.hero, self.enemies[self.spots.index([self.hero.x, self.hero.y])])
@@ -93,6 +96,13 @@ class Game(object):
         for i, skeleton in zip(self.spots, self.skeletons):
             skeleton.x = i[0]
             skeleton.y = i[1]
+
+
+    def draw_skeletons(self):
+        for i, skeleton in zip(range(self.skeleton_number), self.skeletons):
+            skeleton.draw(i)
+
+
 
     
     def enlist_enemies(self):

@@ -16,6 +16,19 @@ class Entity(object):
         return randint(1, 6)
 
 
+    def move_options(self, spots):
+        move_options = []
+        if self.map.is_wall(self.x + self.map.tile_size, self.y) == False and [self.x + self.map.tile_size, self.y] not in spots:
+            move_options.append([self.map.tile_size, 0])
+        if self.map.is_wall(self.x - self.map.tile_size, self.y) == False and [self.x - self.map.tile_size, self.y] not in spots:
+            move_options.append([-self.map.tile_size, 0])
+        if self.map.is_wall(self.x, self.y + self.map.tile_size) == False and [self.x, self.y + self.map.tile_size] not in spots:
+            move_options.append([0, self.map.tile_size])
+        if self.map.is_wall(self.x, self.y - self.map.tile_size) == False and [self.x, self.y - self.map.tile_size] not in spots:
+            move_options.append([0, -self.map.tile_size])
+        return move_options
+
+
 class Hero(Entity):
 
     def __init__(self, canvas):
@@ -63,11 +76,18 @@ class Skeleton(Entity):
         self.key = False
 
 
-    def draw(self, skeleton_number):
-        for i in range(len(skeleton_number)):
-            self.skeleton_image = self.canvas.create_image(skeleton_number[i].x, skeleton_number[i].y, anchor=NW, image=self.skeleton_file, tags=self.skeleton_marker[i])
+    def draw(self, i):
+        self.skeleton_image = self.canvas.create_image(self.x, self.y, anchor=NW, image=self.skeleton_file, tags=self.skeleton_marker[i])
 
 
+    def move(self, spots):
+        move_coords = self.move_options(spots)[randint(0, len(self.move_options(spots)) - 1)]
+        self.canvas.move(self.skeleton_image, move_coords[0], move_coords[1] )
+        self.x += move_coords[0]
+        self.y += move_coords[1]
+        return [self.x, self.y]
+    
+    
     def delete(self, skeleton_id):
         self.canvas.itemconfig(self.skeleton_marker[skeleton_id], image=self.blood)
 
@@ -88,21 +108,8 @@ class Boss(Entity):
         self.boss_image = self.canvas.create_image(spot[0], spot[1], anchor=NW, image=self.boss_file)
 
 
-    def move_options(self):
-        move_options = []
-        if self.map.is_wall(self.x + self.map.tile_size, self.y) == False:
-            move_options.append([self.map.tile_size, 0])
-        if self.map.is_wall(self.x - self.map.tile_size, self.y) == False:
-            move_options.append([-self.map.tile_size, 0])
-        if self.map.is_wall(self.x, self.y + self.map.tile_size) == False:
-            move_options.append([0, self.map.tile_size])
-        if self.map.is_wall(self.x, self.y - self.map.tile_size) == False:
-            move_options.append([0, -self.map.tile_size])
-        return move_options
-
-   
-    def move(self):
-        move_coords = self.move_options()[randint(0, len(self.move_options()) - 1)]
+    def move(self, spots):
+        move_coords = self.move_options(spots)[randint(0, len(self.move_options(spots)) - 1)]
         self.canvas.move(self.boss_image, move_coords[0], move_coords[1] )
         self.x += move_coords[0]
         self.y += move_coords[1]
