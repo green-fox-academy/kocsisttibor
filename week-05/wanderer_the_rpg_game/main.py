@@ -63,7 +63,8 @@ class Game(object):
                     if self.map.is_wall(self.hero.x + self.arrows[i][1] * self.map.tile_size,\
                                         self.hero.y + self.arrows[i][2] * self.map.tile_size) == False:
                         self.hero.move(self.arrows[i][1] * self.map.tile_size, self.arrows[i][2] * self.map.tile_size)
-                    self.spots[-1] = self.boss.move()
+                    if self.boss.hp > 0 and [self.hero.x, self.hero.y] != self.spots[-1]:
+                        self.spots[-1] = self.boss.move()
         self.check_after_arrows()
         if(e.keysym == "space") and [self.hero.x, self.hero.y] in self.spots:
             self.fight(self.hero, self.enemies[self.spots.index([self.hero.x, self.hero.y])])
