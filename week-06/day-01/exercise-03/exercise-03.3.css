@@ -1,0 +1,21 @@
+
+.container{
+    display: flex;
+    flex-grow: 1;
+    justify-content: flex-end;
+    align-items: flex-end;
+    height: 280px;
+    background-color: #FFD62A;
+    padding: 0px;
+}
+
+ul{
+    list-style-type: none;
+}
+
+.item{
+    width: 108px;
+    height: 108px;
+    background-color: #B02AFF;
+    margin-left: 7px
+}
