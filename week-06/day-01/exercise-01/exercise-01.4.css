@@ -1,0 +1,27 @@
+.item{
+    min-height: 190px;
+}
+
+.green{
+    background: #51D400;
+    flex-basis: 190px;
+    flex-grow: 1;    
+}
+
+.yellow{
+    background: #FFD62A;
+    flex-basis: 380px;
+    flex-grow: 2;    
+}
+
+.purple{
+    background: #B02AFF;
+    flex-basis: 190px;
+    flex-grow: 1;    
+}
+
+.container{
+    display: flex;
+    flex-flow: column;
+    width: 600px;
+}
