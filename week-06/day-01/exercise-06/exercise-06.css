@@ -68,5 +68,24 @@ li{
 
 .sidebar{
     width: 253px;
-    background-color: #51D400
+    background-color: #51D400;
+    display: flex;
+    align-items: center;
+    flex-flow: column;
+}
+
+.side_list{
+    padding: 0px;
+}
+
+.side_link{
+    width: 225px;
+    height: 45px;
+    background-color: #573559;
+    margin: 4px;
+}
+
+.side_par{
+    padding: 10px 15px;
+    margin: 0px;
 }
