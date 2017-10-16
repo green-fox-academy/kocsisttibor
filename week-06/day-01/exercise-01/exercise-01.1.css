@@ -1,0 +1,20 @@
+.item{
+    min-width: 190px;
+    min-height: 190px;
+}
+
+.green{
+    background: #51D400;
+}
+
+.yellow{
+    background: #FFD62A;
+}
+
+.purple{
+    background: #B02AFF;
+}
+
+.container{
+    display: flex;
+}
