@@ -1,0 +1,67 @@
+body{
+    background: #313841;
+    position: relative;
+}
+
+.button_container{
+    width: 40px;
+    height: 40px;
+    background: #1C242B;
+    text-align: center;
+    line-height: 40px;
+}
+
+.button{
+    position: absolute;
+    top: 80px;
+    left: 300px;
+}
+
+.options{
+    position: absolute;
+    top: -150px;
+    left: 300px;
+    width:  200px;
+    height: 110px;
+    display: flex;
+    flex-flow: column;
+    justify-content: space-between;
+}
+
+.delete{
+    display: flex;
+    background: #F34541
+}
+
+.check{
+    display: flex;
+    background: #38BA7D;
+}
+
+.label{
+    color: #ffffff;
+    line-height: 40px;
+    width: 70%;
+    text-align: center;
+    font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
+}
+
+.white{
+    color: #ffffff;
+    margin: 3px;
+}
+
+.button:hover + .options{
+    top: 150px;
+    left: 300px;
+}
+
+.red{
+    color: #F34541;
+    margin: 3px;
+}
+
+.green{
+    color: #38BA7D;
+    margin: 3px;
+}
