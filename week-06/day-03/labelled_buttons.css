@@ -19,13 +19,14 @@ body{
 
 .options{
     position: absolute;
-    top: -150px;
+    top: 150px;
     left: 300px;
     width:  200px;
     height: 110px;
     display: flex;
     flex-flow: column;
     justify-content: space-between;
+    filter:brightness(0%)
 }
 
 .delete{
@@ -52,8 +53,7 @@ body{
 }
 
 .button:hover + .options{
-    top: 150px;
-    left: 300px;
+    filter:brightness(100%)
 }
 
 .red{
