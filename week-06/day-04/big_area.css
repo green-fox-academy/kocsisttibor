@@ -1,0 +1,25 @@
+.container{
+    display: grid;
+    width: 100%;
+    background: #333333;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: minmax(200px, auto);
+    grid-gap: 14px;
+}
+
+.small{
+    background: #B02AFF;
+}
+
+.big{
+    background: #51D400
+    grid-column: 2 / 4;
+    grid-row: 1 / 3;
+    padding: 60px 130px;
+}
+
+.yellow{
+    width: 100%;
+    height: 100%;
+    background: #FFD62A
+}
