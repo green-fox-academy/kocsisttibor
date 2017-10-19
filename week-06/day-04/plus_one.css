@@ -6,7 +6,7 @@ body{
     width: 640px;
     height: 640px;
     margin: auto;
-    background: #1d1c1c;
+    background: #5e5b5b;
     display: grid;
     grid-template-columns: repeat(8, 1fr);
     grid-template-rows: repeat(8, 78.25px);
@@ -32,13 +32,82 @@ div:nth-of-type(16n+2){
     background: #363535;
 }
 
-div:hover{
-    /* transform: rotateY(60deg); */
-    animation-name: tile_rotation;
+.black_pawn:hover > p{
+    animation: black_pawn 1s;
+}
+
+.black_rook:hover > p{
+    animation-name: black_rook;
     animation-duration: 1s;
 }
 
-@keyframes tile_rotation{
-    from{ transfrom: rotateY(0deg)}
-    to{ transform: rotateY(180deg)}
+.black_left_bishop:hover > p{
+    animation-name: black_left_bishop;
+    animation-duration: 1s;
+}
+
+.black_right_bishop:hover > p{
+    animation-name: black_right_bishop;
+    animation-duration: 1s;
+}
+
+.black_left_knight:hover > p{
+    animation-name: black_left_knight;
+    animation-duration: 1s;
+}
+
+.black_right_knight:hover > p{
+    animation-name: black_right_knight;
+    animation-duration: 1s;
+}
+
+.black_king:hover > p{
+    animation-name: black_king;
+    animation-duration: 1s;
+}
+
+.black_queen:hover > p{
+    animation-name: black_queen;
+    animation-duration: 1s;
+}
+
+
+@keyframes black_pawn{
+    from{ transform: translateY(0px)}
+    to{ transform: translateY(156.5px)}
+}
+
+@keyframes black_rook{
+    from{ transform: translateY(0)}
+    to{ transform: translateY(313px)}
+}
+
+@keyframes black_left_bishop{
+    from{ transform: translate(0px)}
+    to{ transform: translate(313px, 313px)}
+}
+
+@keyframes black_right_bishop{
+    from{ transform: translate(0px)}
+    to{ transform: translate(-313px, 313px)}
+}
+
+@keyframes black_left_knight{
+    from{ transform: translate(0px)}
+    to{ transform: translate(78.25px, 156.5px)}
+}
+
+@keyframes black_right_knight{
+    from{ transform: translate(0px)}
+    to{ transform: translate(-78.25px, 156.5px)}
+}
+
+@keyframes black_king{
+    from{ transform: translateY(0)}
+    to{ transform: translateY(78.25px)}
+}
+
+@keyframes black_queen{
+    from{ transform: translateY(0)}
+    to{ transform: translateY(313px)}
 }
