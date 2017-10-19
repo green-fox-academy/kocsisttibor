@@ -1,0 +1,58 @@
+body{
+    margin: 0rem;
+}
+
+.header{
+    display: flex;
+    padding: 2rem;
+    margin: 0rem;
+    margin-bottom: 1rem;
+    width: 100%;
+    background: #B02AFF;
+    box-sizing: border-box;
+}
+
+ul{
+    list-style: none;
+}
+
+.nav{
+    background: #2AEAFF;
+    margin: 0.4rem
+}
+
+.short{
+    width: 5rem;
+    height: 2rem;
+}
+
+.long{
+    width: 7rem;
+    height: 2rem;
+}
+
+.content{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    width: 90%;
+    margin: auto;
+    grid-auto-rows: minmax(6rem, auto);
+    grid-gap: 1rem;
+}
+
+.sidebar{
+    background: #51D400;
+    grid-row: 1 / 6;
+}
+
+.main{
+    background: #FFD62A;
+    grid-column: 2 / 4;
+    grid-row: 1 / 6;
+}
+
+
+.footer{
+    background: #CCCCCC;
+    grid-column: 1 / 4;
+}
