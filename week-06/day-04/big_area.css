@@ -3,7 +3,7 @@
     width: 100%;
     background: #333333;
     grid-template-columns: repeat(3, 1fr);
-    grid-auto-rows: minmax(200px, auto);
+    grid-auto-rows: minmax(13rem, auto);
     grid-gap: 14px;
 }
 
@@ -12,10 +12,10 @@
 }
 
 .big{
-    background: #51D400
+    background: #51D400;
     grid-column: 2 / 4;
     grid-row: 1 / 3;
-    padding: 60px 130px;
+    padding: 8% 15%;
 }
 
 .yellow{
