@@ -1,0 +1,55 @@
+section.features{
+    display: flex;
+}
+
+section.features div.left{
+    background-image: url("../assets/feature_image.png");
+    background-size: cover;
+    flex-grow: 1;
+}
+
+section.features div.right{
+    width:35%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-auto-rows: minmax(4rem, auto);
+}
+
+section.features div.right article{
+    grid-column: 1 / 3;
+    background: #1F1F1F;
+    color: #FBFBFB;
+    padding: 3rem;  
+    padding-right: 5rem;  
+}
+
+section.features div.right article h2{
+    letter-spacing: 0.4rem;
+    font-size: 1rem;
+    color: #8C8C8C;
+    font-family: "Patua One", cursive;
+    font-weight: 100;
+    text-transform: uppercase;
+    margin-bottom: 0.8rem;
+}
+
+section.features div.right article h1{
+    font-family: "Patua One", cursive;
+    font-size: 3.5rem;
+    font-weight: normal;
+}
+
+section.features div.right article div.divider{
+    width: 50%;
+    border: 2px solid #FBFBFB;
+    margin: 1.5rem 0;
+}
+
+section.features div.right article p{
+    font-family: "Karla", sans-serif;
+}
+
+section.features div.right article p:nth-last-of-type(1){
+    font-size: 1.5rem;
+    margin: 1.5rem 0;
+}
