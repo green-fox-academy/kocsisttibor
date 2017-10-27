@@ -1,0 +1,42 @@
+body {
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+container {
+    position: absolute;
+    top: 100px;
+}
+
+main {
+    width: 800px;
+    height: 360px;
+    background: red;
+    display: flex;
+}
+
+.side {
+    width: 80px;
+    background: purple;
+}
+
+.main {
+    flex-grow: 1;
+}
+
+footer {
+    display: flex;
+    width: 800px;
+    height: 140px;
+    background: plum;
+    display: flex;
+    justify-content: center;
+}
+
+.small {
+    width: 120px;
+    height: 90px;
+    background: green;
+    margin: 25px 4px;
+}
