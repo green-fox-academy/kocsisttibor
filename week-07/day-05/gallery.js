@@ -16,15 +16,18 @@ thumbnails.forEach(function(e, i) {
 })
 
 let image = document.querySelector('div.image');
+let description = document.querySelector('div.description');
+let desc_title = document.querySelector('h3.description');
+let desc_par = document.querySelector('p.description');
 let image_index = 0;
 
 function image_setter() {
     image.style.backgroundImage = 'url(' + images[image_index].url + ')';
+    desc_title.textContent = images[image_index].title;
+    desc_par.textContent = images[image_index].desc;
 }
 
 image_setter();
-
-let description = document.querySelector('div.description');
 
 image.addEventListener('mouseenter', function () {
     description.classList.remove('hidden');
