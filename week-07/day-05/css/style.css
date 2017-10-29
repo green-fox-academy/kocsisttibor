@@ -21,6 +21,14 @@ main {
 .side {
     width: 80px;
     background: #EAEAEA;
+    display: flex;
+    justify-content: center;
+    line-height: 360px;
+}
+
+.button {
+    width: 100%;
+    height: 100%;
     background-image: url("left_arrow.svg");
     background-position: center;
     background-repeat: no-repeat;
@@ -30,10 +38,22 @@ main {
     transform: rotate(180deg);
 }
 
+.button_hover {
+    background: rgb(224, 223, 223);
+}
+
+.side:active {
+    background: rgb(180, 179, 179);
+}
+
+.inactive {
+    filter:brightness(2);
+}
+
 .image {
     max-width: 640px;
     flex-grow: 1;
-    background-image: url("../images/helena-yankovska-416906.jpg");
+    /* background-image: url("../images/helena-yankovska-416906.jpg"); */
     background-size: cover;
     display: flex;
     flex-flow: column;
@@ -85,4 +105,8 @@ footer {
     border-radius: 3px;
     box-shadow: 0px 1px 2px 2px rgba(90, 90, 90, 0.6);
     background-size: cover;
+}
+
+.before_select {
+    box-shadow: 0px 3px 4px 2px rgba(90, 90, 90, 0.6);
 }
