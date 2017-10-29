@@ -9,11 +9,6 @@ let images = [
     {'title':'Lake', 'desc': 'asdlkdslhasdasd', 'url':'images/ricardo-gomez-angel-404673.jpg'},
 ]
 
-let thumbnails = document.querySelectorAll('.small');
-
-thumbnails.forEach(function(e, i) {
-    e.style.backgroundImage = 'url(' + images[i].url + ')';
-})
 
 let image = document.querySelector('div.image');
 let description = document.querySelector('div.description');
@@ -37,13 +32,27 @@ image.addEventListener('mouseleave', function () {
     description.classList.add('hidden');
 });
 
+let thumbnails = document.querySelectorAll('.small');
+
+thumbnails.forEach(function(e, i) {
+    e.style.backgroundImage = 'url(' + images[i].url + ')';
+})
+
 thumbnails.forEach(function(e, i) {
     e.addEventListener('mouseenter', function() {
         e.classList.add('before_select')
     });
     e.addEventListener('mouseleave', function() {
         e.classList.remove('before_select')
-    });  
+    });
+    e.addEventListener('click', function() {
+        thumbnails.forEach(function(thumbnail) {
+            thumbnail.classList.remove('selected')
+        })
+        e.classList.add('selected');
+        image_index = i;
+        image_setter()
+    })  
 });
 
 let side = document.querySelectorAll('.side');
@@ -74,7 +83,7 @@ right_side.addEventListener('click', function() {
     image_index += 1;
     image_setter();
     left_side.classList.remove('inactive')
-    if (image_index === images.length) {
+    if (image_index === images.length - 1) {
         right_side.classList.add('inactive')
     }
 })
