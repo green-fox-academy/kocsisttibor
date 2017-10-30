@@ -56,9 +56,19 @@ console.log(refuel.bind(ferrari)(52));
 // and increments kms with it, then drains the battery based on the consumpltion 
 
 
+var tesla = {
+    type: "Tesla",
+    battery: 1000,
+    kms: 2000,
+    consuption: 0.1,
+    ride: function(km) {
+        this.kms += km;
+        this.battery -= km * this.consuption;
+    }
+}
 
 
 
-// tesla.ride(36);
-// console.log(tesla.kms);
-// console.log(tesla.battery);
+tesla.ride(36);
+console.log(tesla.kms);
+console.log(tesla.battery);
