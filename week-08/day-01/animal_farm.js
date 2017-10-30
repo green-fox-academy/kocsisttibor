@@ -38,15 +38,11 @@ class Farm {
     }
 
     slaughter() {
-        this.listOfAnimals.forEach(function(e, i) {
-            let fattest_index = 0;
-            let hunger = this.listOfAnimals[0].hunger;
-            if (e.hunger < hunger) {
-                hunger = e.hunger;
-                fattest_index = i;
-            }
-        }.bind(this))
-        this.listOfAnimals.splice(i, 1);
+        let hungers = [];
+        this.listOfAnimals.forEach(function(e) {
+            hungers.push(e.hunger);
+        })
+        this.listOfAnimals.splice(hungers.indexOf(Math.min(...hungers)), 1);
     }
 }
 
