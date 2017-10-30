@@ -37,7 +37,10 @@ var ferrari = {
 
 function refuel(liters) {
   this.fuel += liters
+  return this.fuel;
 }
+
+console.log(refuel.bind(ferrari)(52));
 
 
 
@@ -56,6 +59,6 @@ function refuel(liters) {
 
 
 
-tesla.ride(36);
-console.log(tesla.kms);
-console.log(tesla.battery);
+// tesla.ride(36);
+// console.log(tesla.kms);
+// console.log(tesla.battery);
