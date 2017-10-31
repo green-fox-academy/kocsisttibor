@@ -15,9 +15,7 @@ var fruits = [
 
 var listWithLetters = fruits.map(function(x) {
     var eNums = x.split('').filter(function(y) {
-        if (y === 'e') {
-            return 1;
-        }
+        return y === 'e'
     })
     return eNums.length
 });
