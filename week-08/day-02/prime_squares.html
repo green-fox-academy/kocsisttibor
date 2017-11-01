@@ -53,16 +53,31 @@
             return true;
         }
 
+        function colorDiv(num) {
+            if (isPrime(num)) {
+                divs[num].classList.add('prime');
+            } else {
+                divs[num].classList.add('not-prime')
+            }
+        }
+
+        function colorNextDiv() {
+            colorDiv(next);
+            next += 1;
+        }
+
         for (let i = 2; i <= 100; i += 1) {
             let div = document.createElement('div');
             section.appendChild(div);
             div.textContent = i;
-            if (isPrime(i)) {
-                div.classList.add('prime');
-            } else {
-                div.classList.add('not-prime')
-            }
         }
+
+        var divs = document.querySelectorAll('div');
+        var next = 0;
+        var colorChanger = setInterval(colorNextDiv, 100)
+        setTimeout(function() {
+            clearInterval(colorChanger);
+        }, 10100);
 
     </script>
 </body>
