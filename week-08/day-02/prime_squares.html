@@ -54,7 +54,7 @@
         }
 
         function colorDiv(num) {
-            if (isPrime(num)) {
+            if (isPrime(num + 1)) {
                 divs[num].classList.add('prime');
             } else {
                 divs[num].classList.add('not-prime')
@@ -75,6 +75,7 @@
         var divs = document.querySelectorAll('div');
         var next = 0;
         var colorChanger = setInterval(colorNextDiv, 100)
+
         setTimeout(function() {
             clearInterval(colorChanger);
         }, 10100);
