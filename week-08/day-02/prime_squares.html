@@ -15,7 +15,7 @@
             grid-auto-rows: 50px;
             grid-template-columns: repeat(10, 1fr);
             width: 1000px;
-            margin: 0 auto;
+            margin: auto;
         }
         section div {
             box-shadow: 0px 0px 10px #666 inset;
@@ -42,8 +42,16 @@
         //  - the timer should fire every 100ms
         //  - the timer should stop when there are no more elements left to be colored
         
-        var section = document.querySelector('section');
-
+        
+        function createDivs() {
+            for (let i = 2; i <= 100; i += 1) {
+                var section = document.querySelector('section');
+                let div = document.createElement('div');
+                section.appendChild(div);
+                div.textContent = i;
+            }
+        }
+        
         function isPrime(num) {
             for (i = num - 1; i >= 2; i -= 1) {
                 if (num % i === 0) {
@@ -52,7 +60,7 @@
             }
             return true;
         }
-
+        
         function colorDiv(num) {
             if (isPrime(num + 1)) {
                 divs[num].classList.add('prime');
@@ -60,17 +68,13 @@
                 divs[num].classList.add('not-prime')
             }
         }
-
+        
         function colorNextDiv() {
             colorDiv(next);
             next += 1;
         }
 
-        for (let i = 2; i <= 100; i += 1) {
-            let div = document.createElement('div');
-            section.appendChild(div);
-            div.textContent = i;
-        }
+        window.onload = createDivs()
 
         var divs = document.querySelectorAll('div');
         var next = 0;
