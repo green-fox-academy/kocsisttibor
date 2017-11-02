@@ -40,12 +40,12 @@
                 let div = document.createElement('div');
                 div.classList.add('thumbnail');
                 let body = document.querySelector('body');
-                body.appendChild(div)
                 div.style.backgroundImage = 'url(' + background.data[i].images.fixed_height_still.url + ')';
                 div.setAttribute('data-gif', background.data[i].images.downsized.url);
                 div.addEventListener('click', function() {
                     this.style.backgroundImage = 'url(' + this.dataset.gif + ')';
                 });
+                body.appendChild(div)
             }
         }
 
