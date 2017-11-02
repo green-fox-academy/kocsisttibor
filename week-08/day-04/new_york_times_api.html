@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>New York Times API</title>
+</head>
+<body>
+
+    <script>
+        'user strict';
+
+        function getArticles() {
+            let xhr = new XMLHttpRequest();
+            let url = 'https://api.nytimes.com/svc/search/v2/articlesearch.json?api-key=e14daf06f70b4221978b040ce4029b1c&q=moon+landing+by+Apollo+11';   // parameters are assigned by & sign; parameters and theri value are linked by = sign; multiple words in values are linked by + sign
+            xhr.open('GET', url);
+            xhr.send();
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4) {
+                    let articles = JSON.parse(xhr.responseText);
+                    console.log(articles);
+                }
+            }
+        }
+
+        window.onload = getArticles();
+
+    </script>
+    
+</body>
+</html>
