@@ -11,20 +11,41 @@
     <script>
         'user strict';
 
-        function getArticles() {
+        function getArticles(callback) {
             let xhr = new XMLHttpRequest();
-            let url = 'https://api.nytimes.com/svc/search/v2/articlesearch.json?api-key=e14daf06f70b4221978b040ce4029b1c&q=moon+landing+by+Apollo+11';   // parameters are assigned by & sign; parameters and theri value are linked by = sign; multiple words in values are linked by + sign
+            let url = 'https://api.nytimes.com/svc/search/v2/articlesearch.json?api-key=e14daf06f70b4221978b040ce4029b1c&q=moon+landing+by+Apollo+11';   // before the first parameter ? sign is used; parameters are assigned by & sign; parameters and theri value are linked by = sign; multiple words in values are linked by + sign
             xhr.open('GET', url);
             xhr.send();
             xhr.onreadystatechange = function() {
                 if (xhr.readyState === 4) {
                     let articles = JSON.parse(xhr.responseText);
                     console.log(articles);
+                    callback(articles)
                 }
             }
         }
 
-        window.onload = getArticles();
+        window.onload = getArticles(displayHeadlines);
+
+        function displayHeadlines(articles) {
+            for (let i = 0; i < articles.response.docs.length; i += 1) {
+                let h3 = document.createElement('h3');
+                let h6 = document.createElement('h6');
+                let p = document.createElement('p');
+                let link = document.createElement('a');
+                let more = document.createElement('p');
+                h3.textContent = articles.response.docs[i].headline.main;
+                h6.textContent = articles.response.docs[i].pub_date;
+                p.textContent = articles.response.docs[i].snippet;
+                link.setAttribute('href', articles.response.docs[i].web_url)
+                more.textContent = 'More'
+                document.body.appendChild(h3);
+                document.body.appendChild(h6);
+                document.body.appendChild(p);
+                document.body.appendChild(link);
+                link.appendChild(more)
+            }
+        }
 
     </script>
     
