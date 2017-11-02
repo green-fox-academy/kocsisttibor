@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>giphy_api</title>
+    <style>
+        .thumbnail {
+            width: 300px;
+            height: 200px;
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        'user strict';
+
+        function getImages(callback) {
+            let xhr = new XMLHttpRequest();
+            xhr.open('GET', 'http://api.giphy.com/v1/gifs/search?q=ryan+gosling&api_key=EbmpWGuoN3Pt5ObmRuAaKfvjKzlaMySe&limit=16');
+            xhr.send();
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4) {
+                    let gifs = JSON.parse(xhr.responseText);
+                    console.log(gifs);
+                    callback(gifs);
+                }
+            }
+        }
+
+        window.onload = getImages(addDivs);
+
+        function addDivs(background) {
+            for (let i = 0; i < background.data.length; i += 1){
+                let div = document.createElement('div');
+                div.classList.add('thumbnail');
+                let body = document.querySelector('body');
+                body.appendChild(div)
+                div.style.backgroundImage = 'url(' + background.data[i].images.fixed_height_still.url + ')';
+                div.setAttribute('data-gif', background.data[i].images.downsized.url);
+                div.addEventListener('click', function() {
+                    this.style.backgroundImage = 'url(' + this.dataset.gif + ')';
+                });
+            }
+        }
+
+
+    </script>
+    
+</body>
+</html>
