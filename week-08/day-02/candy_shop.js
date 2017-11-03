@@ -11,7 +11,9 @@ var accelerator = 1;
 var goalReached = false;
 var candiesPerLolly = 10;
 var lolliesToAccelerate = 1
-var candyGoal = 30
+var candyGoal = 30;
+var candyFactory = null;
+
 
 function createCandy() {
     rate = (lollyNumber - lollyNumber % lolliesToAccelerate) / lolliesToAccelerate * accelerator;
@@ -25,12 +27,19 @@ function createCandy() {
 }
 
 function automatCandy() {
-    if (goalReached === true) {
-        console.log('stopping interval'); // reaches this point, but does not stops the timer with next line
-        clearInterval(candyFactory);
-    } else {
-        var candyFactory = setInterval(createCandy, 1000);
-    }
+// this was the original version; I let it here to understand the one line version
+//     if (goalReached)  {
+//         clearInterval(candyFactory);
+//     } else {
+//         candyFactory = setInterval(createCandy, 1000);
+//     }
+// }
+
+// this is the irst verion of ternary operator; declaring variable in else branch is not so nice
+// goalReached ? clearInterval(candyFactory) : candyFactory = setInterval(createCandy, 1000);
+
+// this is the final version
+candyFactory = goalReached ? clearInterval(candyFactory) : setInterval(createCandy, 1000);
 }
 
 candyButton.addEventListener('click', function() {
