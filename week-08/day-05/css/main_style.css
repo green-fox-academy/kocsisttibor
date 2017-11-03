@@ -44,7 +44,7 @@ div.vote_block {
 }
 
 div.vote_block > div:nth-child(1) {
-    height: 1rem;
+    height: 1.2rem;
     background-image: url("upvote.png");
     background-position: center;
     background-repeat: no-repeat;
@@ -60,7 +60,7 @@ div.vote_block > div:nth-child(2) {
 } 
 
 div.vote_block > div:nth-child(3) {
-    height: 1rem;
+    height: 1.2rem;
     background-image: url("downvote.png");
     background-position: center;
     background-repeat: no-repeat;
