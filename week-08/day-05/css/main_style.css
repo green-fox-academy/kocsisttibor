@@ -1,0 +1,16 @@
+* {
+    margin: 0px;
+    font-family: Lato;
+}
+
+body {
+    max-width: 1024px;
+    margin: 0 auto;
+}
+
+body > section {
+    height: 16rem;
+    background-image: url("reddit_space.png");
+    background-size: cover;
+    background-position: center;
+}
