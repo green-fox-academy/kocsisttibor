@@ -1,6 +1,8 @@
 * {
     margin: 0px;
     font-family: Lato;
+    box-sizing: border-box;
+    color: rgb(38, 41, 43);
 }
 
 body {
@@ -13,4 +15,111 @@ body > section {
     background-image: url("reddit_space.png");
     background-size: cover;
     background-position: center;
+}
+
+container.main {
+    display: flex;
+    padding: 1rem 0.7rem;
+    background: #EEEEEE;
+}
+
+container.left {
+    width: 66%;
+    padding-right: 0.7rem;
+}
+
+container.left > section {
+    width: 100%;
+    display: flex;
+    background: #fff;
+    padding: 0.7rem;
+}
+
+div.vote_block {
+    display: flex;
+    flex-direction: column;
+    padding: 0.7rem 0.2rem;
+}
+
+div.vote_block > div:nth-child(1) {
+    height: 1rem;
+    background-image: url("upvote.png");
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+div.vote_block > div:nth-child(2) {
+    color: #C6C6C6;
+    font-weight: bold;
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+} 
+
+div.vote_block > div:nth-child(3) {
+    height: 1rem;
+    background-image: url("downvote.png");
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+article {
+    padding: 0 0.5rem;
+}
+
+article > div:nth-child(1) {
+    font-size: 1.8rem;
+    margin-bottom: 0.3rem;
+}
+
+article > div:nth-child(2) {
+    font-size: 0.8rem;
+    color: #C6C6C6;
+}
+
+article > ul {
+    padding: 0px;
+    list-style: none;
+    display: flex;
+}
+
+article > ul > li {
+    padding-right: 0.5rem;
+    color: #C6C6C6;
+}
+
+container.right {
+    flex-grow: 1;
+}
+
+container.right > button {
+    width: 100%;
+    background-color: #4AA3DF;
+    color: #fff;
+    letter-spacing: 0.4rem;
+    padding: 0.8rem 0;
+}
+
+container.right > div:nth-child(2) {
+    background: #fff;
+    margin: 0.5rem 0 0.2rem 0;
+    padding: 0.5rem;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+container.right > div:nth-child(3) {
+    background: #fff;
+    font-size: 0.9rem;
+    padding: 0.5rem;
+}
+
+container.right > div:nth-child(3) > p {
+    text-align: center;
+    margin-bottom: 0.8rem;
+}
+
+container.right > div:nth-child(3) > ul > li {
+    margin: 0.2rem 0;
 }
