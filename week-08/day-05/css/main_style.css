@@ -95,7 +95,7 @@ container.right {
     flex-grow: 1;
 }
 
-container.right > button {
+container.right > a > button {
     width: 100%;
     background-color: #4AA3DF;
     color: #fff;
