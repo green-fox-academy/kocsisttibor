@@ -20,6 +20,10 @@ button {
     margin: 1px;
 }
 
+button:active {
+    background: rgb(18, 39, 228);
+}
+
 div.floors {
     width: 15%;
     background: white;
