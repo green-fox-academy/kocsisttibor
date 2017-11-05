@@ -12,6 +12,9 @@ function getPosts(callback) {
 
 function createSection (data) {
     for (let i = 0; i < data.posts.length; i += 1) {
+        let timestamp = new Date(data.posts[i].timestamp);
+        let now = new Date();
+        let elapsed = new Date((now - timestamp));
         let structure = `
             <div class = "vote_block">
                 <div></div>
@@ -20,7 +23,7 @@ function createSection (data) {
             </div>
             <article>
                 <div>${data.posts[i].title}</div>
-                <div>${data.posts[i].user}</div>
+                <div>submitted ${elapsed.getMinutes()} minutes ago by ${data.posts[i].user}</div>
                 <ul>
                     <li>comments</li>
                     <li>modify</li>
