@@ -1,0 +1,34 @@
+section {
+    height: 300px;
+    width: 50%;
+    background: tomato;
+    box-sizing: border-box;
+    margin: 0 auto;
+    padding: 10px 40px;
+    display: flex;
+    justify-content: space-between;
+}
+
+div.buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+button {
+    border-radius: 4px;
+    margin: 1px;
+}
+
+div.floors {
+    width: 15%;
+    background: white;
+    display: flex;
+    flex-direction: column;
+}
+
+div.floors > div {
+    width: 100%;
+    flex-grow: 1;
+    border: 1px solid black;
+}
