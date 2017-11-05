@@ -1,0 +1,61 @@
+* {
+    margin: 0px;
+    font-family: Lato;
+    box-sizing: border-box;
+    color: rgb(38, 41, 43);
+}
+
+body {
+    max-width: 1024px;
+    margin: 0 auto;
+}
+
+body > section {
+    height: 16rem;
+    background-image: url("reddit_space.png");
+    background-size: cover;
+    background-position: center;
+}
+
+container.main {
+    display: flex;
+    padding: 1.3rem 0.7rem;
+    background: #EEEEEE;
+    flex-direction: column;
+}
+
+container.main > div {
+    width: 60%;
+    height: 250px;
+    background: #fff;
+    padding: 0.7rem;
+}
+
+span{
+    color: red;
+}
+
+p {
+    font-weight: bold;
+    margin: 0.6rem 0rem;
+}
+
+input {
+    width: 100%;
+    background: #EEEEEE;
+    border: 1px solid rgb(212, 210, 210);
+}
+
+div > input:nth-child(2) {
+    height: 5rem;
+}
+
+button {
+    background: #4AA3DF;
+    width: 30%;
+    color: #fff;
+    letter-spacing: 0.3rem;
+    font-weight: bold;
+    margin: 0.7rem 0rem;
+    padding: 0.7rem;
+}
