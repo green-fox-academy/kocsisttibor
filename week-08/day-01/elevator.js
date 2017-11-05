@@ -12,6 +12,15 @@ class elevatorView {
             floors.appendChild(div);
         }
     }
+
+    displayPeople(actualLevel, actualPeople) {
+        let divs = document.querySelectorAll('div.floors > div');
+        divs.forEach(function(div) {
+            div.style.textContent = ""
+        });
+        let div = document.querySelector('div.level_1');
+        div.textContent = actualPeople;
+    }
 }
 
 class elevatorModel {
@@ -56,3 +65,4 @@ class elevatorController {
 }
 
 elevator = new elevatorController(10, 5);
+elevator.view.displayPeople(elevator.model.actualLevel, elevator.model.actualPeople);
