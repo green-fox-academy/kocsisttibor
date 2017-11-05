@@ -1,3 +1,5 @@
+'use strict'
+
 class elevatorView {
 
     constructor(maxLevels) {
@@ -61,8 +63,19 @@ class elevatorController {
     constructor(maxLevels, maxPeople) {
         this.view = new elevatorView(maxLevels);
         this.model = new elevatorModel(maxLevels, maxPeople);
+        this.up();
+        console.log(this.model);
+    }
+
+    up() {
+        let up = document.querySelector('button.up');
+        up.addEventListener('click', function() {
+            console.log(this.model);  // undefined; how can be reached a variable that stores another class's instance and created in the constructor?
+            this.model.levelUp().bind(this.model);
+            this.view.displayPeople(this.model.actualLevel, this.model.actualPeople);
+        })
     }
 }
 
-elevator = new elevatorController(10, 5);
+let elevator = new elevatorController(10, 5);
 elevator.view.displayPeople(elevator.model.actualLevel, elevator.model.actualPeople);
