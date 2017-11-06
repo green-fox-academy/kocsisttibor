@@ -70,10 +70,10 @@ class elevatorController {
     up() {
         let up = document.querySelector('button.up');
         up.addEventListener('click', function() {
-            console.log(this.model);  // undefined; how can be reached a variable that stores another class's instance and created in the constructor?
-            this.model.levelUp().bind(this.model);
+            console.log(this.model);  
+            this.model.levelUp();
             this.view.displayPeople(this.model.actualLevel, this.model.actualPeople);
-        })
+        }.bind(this))   //the eventlistener changed the this, so here should be "bound back"
     }
 }
 
