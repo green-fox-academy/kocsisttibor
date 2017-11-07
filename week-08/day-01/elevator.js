@@ -64,7 +64,6 @@ class elevatorController {
         this.view = new elevatorView(maxLevels);
         this.view.displayPeople(this.model.actualLevel, this.model.actualPeople, this.model.maxLevels);
         this.up();
-        console.log(this.model);
     }
 
     up() {
@@ -73,6 +72,14 @@ class elevatorController {
             this.model.levelUp();
             this.view.displayPeople(this.model.actualLevel, this.model.actualPeople, this.model.maxLevels);
         }.bind(this))   //the eventlistener changed the this, so here should be "bound back"
+    }
+
+    down() {
+        let down = document.querySelector('button.down');
+        down.addEventListener('click', function() {
+            this.model.levelDown();
+            this.view.displayPeople(this.model.actualLevel, this.model.actualPeople, this.model.maxLevels);
+        }.bind(this))
     }
 }
 
