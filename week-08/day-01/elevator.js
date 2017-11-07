@@ -64,6 +64,7 @@ class elevatorController {
         this.view = new elevatorView(maxLevels);
         this.view.displayPeople(this.model.actualLevel, this.model.actualPeople, this.model.maxLevels);
         this.up();
+        this.down();
     }
 
     up() {
