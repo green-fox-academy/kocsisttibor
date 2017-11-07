@@ -15,19 +15,18 @@ class elevatorView {
         }
     }
 
-    displayPeople(actualLevel, actualPeople) {
+    displayPeople(actualLevel, actualPeople, maxLevels) {
         let divs = document.querySelectorAll('div.floors > div');
         divs.forEach(function(div) {
-            div.style.textContent = ""
+            div.textContent = ""
         });
-        let div = document.querySelector('div.level_1');
-        div.textContent = actualPeople;
+        divs[maxLevels - actualLevel].textContent = actualPeople;
     }
 }
 
 class elevatorModel {
     
-    constructor(maxPeople, maxLevels) {
+    constructor(maxLevels, maxPeople) {
         this.maxPeople = maxPeople;
         this.maxLevels = maxLevels;
         this.actualLevel = 1;
@@ -61,8 +60,9 @@ class elevatorModel {
 class elevatorController {
 
     constructor(maxLevels, maxPeople) {
-        this.view = new elevatorView(maxLevels);
         this.model = new elevatorModel(maxLevels, maxPeople);
+        this.view = new elevatorView(maxLevels);
+        this.view.displayPeople(this.model.actualLevel, this.model.actualPeople, this.model.maxLevels);
         this.up();
         console.log(this.model);
     }
@@ -70,12 +70,10 @@ class elevatorController {
     up() {
         let up = document.querySelector('button.up');
         up.addEventListener('click', function() {
-            console.log(this.model);  
             this.model.levelUp();
-            this.view.displayPeople(this.model.actualLevel, this.model.actualPeople);
+            this.view.displayPeople(this.model.actualLevel, this.model.actualPeople, this.model.maxLevels);
         }.bind(this))   //the eventlistener changed the this, so here should be "bound back"
     }
 }
 
 let elevator = new elevatorController(10, 5);
-elevator.view.displayPeople(elevator.model.actualLevel, elevator.model.actualPeople);
