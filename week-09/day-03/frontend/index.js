@@ -1,5 +1,8 @@
 let express = require('express');
 let app = express();
+let bodyParser = require('body-parser')
+let urlencodedParser = bodyParser.urlencoded({extended: false});
+app.use(bodyParser.json());
 app.use('/assets', express.static('./assets'));
 
 app.get('/', function(req, res) {
@@ -27,6 +30,27 @@ app.get('/greeter', function(req, res) {
 app.get('/appenda/:word', function(req, res) {
     res.json({'appended': req.params.word + 'a'});
 })
+
+app.post('/dountil/:type', urlencodedParser, function(req, res) {
+    if (req.params.type === 'sum') {
+        let number = req.body.until;
+        let sums = 0;
+        while (number > 0) {
+            sums += number;
+            number -= 1;
+        }
+        res.json({'result': sums});
+    } 
+    else if (req.params.type === 'factor') {
+        let number = req.body.until;
+        let factor = 1;
+        while (number > 0) {
+            factor *= number;
+            number -= 1;
+        }
+        res.json({'result': factor});
+    } 
+});
 
 
 app.listen(8080);
