@@ -2,7 +2,13 @@ let express = require('express');
 let app = express();
 let urlencodedParser = express.urlencoded({extended: false});
 let port = 8080;
+
 app.use(express.json());
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+  });
 
 function changeWordOrder (words) {
     let yoda = []
@@ -31,14 +37,18 @@ function convert (sentences) {
     return result.join(' ');
 }
 
-app.post('/', urlencodedParser, function(req, res){
-    if (req.body.text === '' || req.body.text === undefined){
-        res.json({'error': 'Feed me some text you have to, padawan young you are. Hmmm.'})
-    } else {
-        let words = req.body.text.split('.');
-        res.json({'sith-text': convert(words)})
-    }
-});
+// app.post('/', urlencodedParser, function(req, res){
+//     if (req.body.text === '' || req.body.text === undefined){
+//         res.json({'error': 'Feed me some text you have to, padawan young you are. Hmmm.'})
+//     } else {
+//         let words = req.body.text.split('.');
+//         res.json({'sith-text': convert(words)})
+//     }
+// });
+
+app.post('/', function(req, res) {
+    res.send('Landed');
+})
 
 
 app.listen(port);
