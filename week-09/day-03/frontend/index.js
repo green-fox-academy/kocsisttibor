@@ -14,5 +14,15 @@ app.get('/doubling', function(req, res) {
     }
 });
 
+app.get('/greeter', function(req, res) {
+    if (req.query.name !== undefined && req.query.title !== undefined) {
+        res.json({'welcome_message': 'Oh, hi there ' + req.query.name + ', my dear ' + req.query.title + '!'});
+    } else if (req.query.name === undefined) {
+        res.json({'error': 'Please provide a name!'});
+    } else if (req.query.title === undefined) {
+        res.json({'error': 'Please provide a title!'});
+    }
+})
+
 
 app.listen(8080);
