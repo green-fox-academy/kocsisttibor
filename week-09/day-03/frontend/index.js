@@ -24,5 +24,9 @@ app.get('/greeter', function(req, res) {
     }
 })
 
+app.get('/appenda/:word', function(req, res) {
+    res.json({'appended': req.params.word + 'a'});
+})
+
 
 app.listen(8080);
