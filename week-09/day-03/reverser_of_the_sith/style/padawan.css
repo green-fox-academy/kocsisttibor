@@ -1,0 +1,70 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-image: url("reverser_background.jpg");
+    padding: 5%;
+}
+
+main {
+    display: flex;
+
+}
+
+div.left, div.right {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+h2 {
+    color: #FFC500;
+    font-size: 10rem;
+    margin: 0px;
+    padding: 0px;
+}
+
+div.right {
+    padding: 5%;
+}
+
+fieldset {
+    margin: 3%;
+}
+
+legend {
+    color: #FFC500;
+    font-size: 1.1rem;
+}
+
+input {
+    width: 100%;
+    font-size: 1.5rem;
+    background: rgb(201, 199, 199);
+}
+
+div.button {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+}
+
+div.button > div {
+    width: 50%;
+}
+
+button {
+    width: 50%;
+    margin: 0% 3%;
+    background-color: rgb(221, 169, 0);
+    border-color: rgb(170, 128, 4);
+    color: rgb(61, 60, 60);
+    font-size: 0.9rem;
+}
+
+div.answer {
+    height: 80%;
+}
+
