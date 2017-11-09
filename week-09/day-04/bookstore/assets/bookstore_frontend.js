@@ -14,7 +14,7 @@ function talkToAPI(method, resource){
 }
 
 function getList(){
-    talkToAPI('GET', '/titles')
+    talkToAPI('GET', '/books')
 }
 
 getList();
