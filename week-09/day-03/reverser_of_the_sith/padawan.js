@@ -3,7 +3,7 @@
 function getWisdoms() {
     console.log('started');
     let xhr = new XMLHttpRequest();
-    xhr.open('GET', 'localhost:8080');
+    xhr.open('POST', 'http://localhost:8080');
     xhr.send();
     console.log(xhr.responseText);
 }

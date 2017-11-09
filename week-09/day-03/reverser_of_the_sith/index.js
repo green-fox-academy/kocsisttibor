@@ -1,14 +1,17 @@
 let express = require('express');
+let cors = require('cors');
 let app = express();
 let urlencodedParser = express.urlencoded({extended: false});
 let port = 8080;
 
 app.use(express.json());
-app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    next();
-  });
+app.use(cors());
+
+// app.use(function(req, res, next) {
+//     res.header("Access-Control-Allow-Origin", "*");
+//     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+//     next();
+//   });
 
 function changeWordOrder (words) {
     let yoda = []
@@ -47,6 +50,7 @@ function convert (sentences) {
 // });
 
 app.post('/', function(req, res) {
+    // res.setRequestHeader("Access-Control-Allow-Origin", "*");
     res.send('Landed');
 })
 
