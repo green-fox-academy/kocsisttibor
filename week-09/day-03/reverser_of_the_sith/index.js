@@ -37,11 +37,12 @@ function convertToYodaish (sentences) {
 }
 
 app.post('/', urlencodedParser, function(req, res){
+    console.log(req.body)
     if (req.body.text === '' || req.body.text === undefined){
         res.json({'error': 'Feed me some text you have to, padawan young you are. Hmmm.'})
     } else {
         let words = req.body.text.split('.');
-        res.json({'sith-text': convertToYodaish(words)})
+        res.json({'sithtext': convertToYodaish(words)})
     }
 });
 

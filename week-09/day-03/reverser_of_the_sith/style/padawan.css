@@ -69,6 +69,7 @@ div.answer {
     padding: 10% 0%;
     display: flex;
     flex-direction: row;
+    color: #FFC500;
 }
 
 div.yoda {
@@ -84,6 +85,5 @@ div.grr {
     padding: 10% 5%;
     color: #FFC500;
     font-size: 3rem;
-    display: none;
 }
 

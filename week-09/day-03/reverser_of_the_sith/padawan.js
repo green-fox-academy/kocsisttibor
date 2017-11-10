@@ -1,18 +1,27 @@
 'use strict';
 
-function getWisdoms() {
-    console.log('started');
-    let xhr = new XMLHttpRequest();
-    xhr.open('POST', 'http://localhost:8080');
+function grabInput() {
     let input = document.querySelector('input').value;
     let data = {"text": input};
-    console.log(data)
-    xhr.send(data);
-    // document.querySelector('div.answer').innerHTML = xhr.responseText;
-    let answer = JSON.parse(xhr.responseText)
-    console.log(answer);
+    return data;
 }
 
-document.querySelector('button').addEventListener('click', function() {
-    document.querySelector('div.grr').style.display = 'block';
-})
+function getWisdoms() {
+    let xhr = new XMLHttpRequest();
+    xhr.open('POST', 'http://localhost:8080');
+    xhr.setRequestHeader('Content-type', 'application/json')
+    let data = grabInput()
+    xhr.onreadystatechange = function() {     //this part handles the asynchronity; otherwise response should have been used before it arrives
+        
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            let answer = JSON.parse(xhr.response);
+            document.querySelector('div.grr').innerHTML = answer.sithtext;
+        }
+    }
+    xhr.send(JSON.stringify(data));   //data is an object, needs to be converted into string      
+}
+
+document.querySelector('button').addEventListener('click', getWisdoms);
+
+
+
