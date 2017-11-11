@@ -1,4 +1,5 @@
 'use strict';
+
 function getPosts(callback) {
     let xhr = new XMLHttpRequest();
     xhr.open('GET', 'http://localhost:8080/posts');
@@ -18,28 +19,44 @@ function createSection (data) {
         let elapsed = new Date((now - timestamp));
         let author = data.posts[i].user === null ? 'anonymus': data.posts[i].user;
         let structure = `
-            <div class = "vote_block">
-                <div></div>
-                <div>${data.posts[i].score}</div>
-                <div></div>
-            </div>
-            <article>
-                <div>${data.posts[i].title}</div>
-                <div>submitted ${elapsed.getMinutes()} minutes ago by ${author}</div>
-                <ul>
-                    <li>comments</li>
-                    <li>modify</li>
-                    <li>remove</li>
-                </ul>
-            </article>
+        <div class = "vote_block">
+        <div class = "up_${data.posts[i].id}"></div>
+        <div>${data.posts[i].score}</div>
+        <div></div>
+        </div>
+        <article>
+        <div>${data.posts[i].title}</div>
+        <div>submitted ${elapsed.getMinutes()} minutes ago by ${author}</div>
+        <ul>
+        <li>comments</li>
+        <li>modify</li>
+        <li>remove</li>
+        </ul>
+        </article>
         `
         let container = document.querySelector('container.left');
         let section = document.createElement('section');
         section.innerHTML = structure;
-        container.appendChild(section)
+        container.appendChild(section);
+        let upArrow = document.querySelector('div.up_' + data.posts[i].id);
+        upArrow.addEventListener('click', upVote(data.posts[i].id, (response) => {    //still not working; upVote invocated not by click but by creation
+            console.log(response);
+        }));
     }
     let loading = document.querySelector('p.loading');
     loading.style.display = 'None';
 }
+
+function upVote(id, callback) {
+    console.log('upVote started');
+    let xhr = new XMLHttpRequest();
+    xhr.open('PUT', 'http://localhost:8080/posts/' + id + '/upvote');
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === XMLHttpRequest.DONE) {       //same as xhr.readystate === 4
+            callback(JSON.parse(xhr.response))
+        }
+    }
+}
+
 
 window.onload = getPosts(createSection);

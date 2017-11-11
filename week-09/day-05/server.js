@@ -74,4 +74,36 @@ app.post('/posts', (req, res) => {
     });
 });
 
+const getScore = (post_id, callback) => {
+    connection.query('SELECT score FROM posts WHERE post_id =' + connection.escape(post_id), (err, result) => {
+        if (err) {
+            console.error(err);
+            return;
+        } else {
+            console.error('result of incrementScore: ' + result);
+            callback(post_id, result);
+        };
+    });
+};
+
+const incrementScore = (post_id, orignalScore) => {
+    let score = originalScore + 1;
+    connection.query('UPDATE posts SET score =' + connection.escape(score) + 'WHERE post_id =' + connection.escape(post_id), (err, result) => {
+        if (err) {
+            console.error(err);
+            return
+        } else {
+            console.error('result of incrementScore: ' + result);
+        }
+    })
+
+}
+
+app.put('/posts/:post_id/upvote', (req, res) => {
+    console.log('targeted post_id: ' + req.params.post_id);
+    getscore(req.params.post_id, (post_id, originalScore) => {
+        incrementScore(post_id, originalScore)
+    });
+})
+
 app.listen(port, error => error ? console.log(error): console.log('Server running, at ' + port));
