@@ -1,7 +1,7 @@
 'use strict';
 function getPosts(callback) {
     let xhr = new XMLHttpRequest();
-    xhr.open('GET', 'http://secure-reddit.herokuapp.com/simple/posts');
+    xhr.open('GET', 'http://localhost:8080/posts');
     xhr.onreadystatechange = function() {
         if (xhr.readyState === 4) {
             callback(JSON.parse(xhr.responseText));
