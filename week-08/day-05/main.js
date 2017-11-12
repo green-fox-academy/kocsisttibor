@@ -39,23 +39,26 @@ function createSection (data) {
         section.innerHTML = structure;
         container.appendChild(section);
         let upArrow = document.querySelector('div.up_' + data.posts[i].id);
-        upArrow.addEventListener('click', upVote(data.posts[i].id, (response) => {    //still not working; upVote invocated not by click but by creation
-            console.log(response);
-        }));
+        upArrow.addEventListener('click', callUpVote);
     }
     let loading = document.querySelector('p.loading');
     loading.style.display = 'None';
 }
 
+function callUpVote() {
+    upVote(this.className, response => console.log(response));
+}
+
 function upVote(id, callback) {
     console.log('upVote started');
     let xhr = new XMLHttpRequest();
-    xhr.open('PUT', 'http://localhost:8080/posts/' + id + '/upvote');
+    xhr.open('PUT', 'http://localhost:8080/posts/:' + id + '/upvote');
     xhr.onreadystatechange = function() {
         if (xhr.readyState === XMLHttpRequest.DONE) {       //same as xhr.readystate === 4
             callback(JSON.parse(xhr.response))
         }
     }
+    xhr.send();
 }
 
 
