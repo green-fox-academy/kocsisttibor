@@ -1,0 +1,227 @@
+* {
+    margin: 0px;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+container {
+    width: 700px;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    margin: 10% auto;
+    box-shadow: 2px 2px 2px 2px rgb(165, 164, 164);
+    background: rgb(224, 224, 224);
+}
+
+section.upper_part {
+    flex-grow: 1;
+    width: 100%;
+    display: flex;
+}
+
+div.left {
+    width: 47%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+div.up_left {
+    width: 100%;
+    height: 30%;
+    display: flex;
+}
+
+div.logo {
+    width: 30%;
+    background-image: url('assets/foxplayer_logo.png');
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+div.notification {
+    width: 30%;
+}
+
+div.artwork {
+    flex-grow: 1;
+    height: 133%;
+    background-image: url('assets/toddterje-albumtime.jpg');
+    background-size: cover;
+    z-index: 1;
+}
+
+div.playlists {
+    width: 100%;
+    flex-grow: 1;
+}
+
+div.playlists > div {
+    height: 2rem;
+    line-height: 2rem;
+    color: rgb(52, 53, 54);
+    font-size: 0.7rem;
+}
+
+div.playlists > div:first-child {
+    width: 60%;
+    display: flex;
+    justify-content: space-between;
+    font-size: 1rem;
+}
+
+div.playlists > div:first-child > span:last-child {
+    font-size: 1.5rem;
+}
+
+div.playlists > div:nth-child(odd) {
+    background: #fff;
+}
+
+div.playlists > div:hover {
+    background: #ABE7E5;
+}
+
+div.playlists > div > span {
+    margin: 0% 3%;
+}
+
+div.right {
+    flex-grow: 1;
+    height: auto;
+}
+
+div.currently_playing {
+    width: 100%;
+    height: 20%;
+    display: flex;
+    justify-content: space-between;
+    color: rgb(52, 53, 54);
+    padding: 5%;
+}
+
+div.album_details > p:last-child {
+    font-size: 0.65rem;
+    color: #B4B4B4;
+}
+
+div.plus_star {
+    display: flex;
+    justify-content: space-between;
+    width: 15%;
+    padding: 0% 2%;
+}
+
+div.plus_star > div:first-child {
+    color: #B4B4B4;
+    font-size: 1.5rem;
+    line-height: 1.5rem;
+}
+
+div.plus_star > div:last-child {
+    background-image: url('assets/star.svg');
+    background-repeat: no-repeat;
+    background-size: 78%;
+    background-position-y: 37%;
+    width: 50%;
+}
+
+div.tracks > div:nth-child(even) {
+    background: #fff;
+}
+
+div.track {
+    display: flex;
+    color: rgb(52, 53, 54);
+    height: 2rem;
+    line-height: 2rem;
+    font-size: 0.7rem;
+}
+
+div.track > div:nth-child(1) {
+    width: 10%;
+    color: #B4B4B4;
+    text-align: center;
+}
+
+div.track > div:nth-child(2) {
+    flex-grow: 1;
+}
+
+div.track > div:nth-child(3) {
+    width: 10%;
+}
+
+section.control_panel {
+    width: 100%;
+    height: 20%;
+    background: #fff;
+    padding: 4.5%;
+    display: flex;
+}
+
+div.play_pause {
+    width: 18%;
+    height: 100%;
+    display: flex;
+}
+
+div.play_pause > div {
+    width: 33.3%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+div.play_pause > div:first-child {
+    background-image: url('assets/rewind.svg');
+}
+
+div.play_pause > div:nth-child(2) {
+    background-image: url('assets/play.svg');
+}
+
+div.play_pause > div:last-child {
+    background-image: url('assets/forward.svg');
+}
+
+div.seekbar {
+    display: flex;
+    flex-grow: 1;
+}
+
+div.seekbar > div {
+    width: 10%;
+    color: rgb(52, 53, 54);
+    font-size: 0.7rem;
+    text-align: center;
+}
+
+div.seekbar > input {
+    flex-grow: 1;
+}
+
+div.shuffle {
+    width: 6.5%;
+    background-image: url('assets/shuffle.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+div.volume {
+    width: 18%;
+    display: flex;
+}
+
+div.volume > div {
+    width: 33%;
+    background-image: url('assets/volume.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+div.volume > input {
+    width: 66%;
+    flex-grow: 1;
+}
