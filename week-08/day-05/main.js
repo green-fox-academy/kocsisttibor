@@ -57,7 +57,7 @@ function callUpVote() {
 
 function upVote(id, callback) {
     let xhr = new XMLHttpRequest();
-    xhr.open('PUT', 'http://localhost:8080/posts/' + id + '/upvote');
+    xhr.open('PUT', 'http://localhost:8080/posts/' + id);
     xhr.onreadystatechange = function() {
         if (xhr.readyState === XMLHttpRequest.DONE) {       //same as xhr.readystate === 4
             callback(JSON.parse(xhr.response))
@@ -76,7 +76,7 @@ function callDownVote() {
 
 function downVote(id, callback) {
     let xhr = new XMLHttpRequest();
-    xhr.open('PUT', 'http://localhost:8080/posts/' + id + '/downvote');
+    xhr.open('PUT', 'http://localhost:8080/posts/' + id);
     xhr.onreadystatechange = function() {
         if (xhr.readyState === XMLHttpRequest.DONE) {       
             callback(JSON.parse(xhr.response))
