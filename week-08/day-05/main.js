@@ -39,46 +39,27 @@ function createSection (data) {
         section.innerHTML = structure;
         container.appendChild(section);
         let upArrow = document.querySelector('div.up_' + data.posts[i].id);
-        upArrow.addEventListener('click', callUpVote);
+        upArrow.addEventListener('click', callVote);
         let downArrow = document.querySelector('div.down_' + data.posts[i].id);
-        downArrow.addEventListener('click', callDownVote);
+        downArrow.addEventListener('click', callVote);
     }
     let loading = document.querySelector('p.loading');
     loading.style.display = 'None';
 }
 
-function callUpVote() {
-    upVote(this.className, response => {
+function callVote() {
+    vote(this.className, response => {
         let className = 'score_' + this.className.split('_')[1];
         let scoreDiv = document.querySelector('div.' + className);
         scoreDiv.innerHTML = response.score;
     });
 }
 
-function upVote(id, callback) {
+function vote(id, callback) {
     let xhr = new XMLHttpRequest();
     xhr.open('PUT', 'http://localhost:8080/posts/' + id);
     xhr.onreadystatechange = function() {
         if (xhr.readyState === XMLHttpRequest.DONE) {       //same as xhr.readystate === 4
-            callback(JSON.parse(xhr.response))
-        }
-    }
-    xhr.send();
-}
-
-function callDownVote() {
-    downVote(this.className, response => {
-        let className = 'score_' + this.className.split('_')[1];
-        let scoreDiv = document.querySelector('div.' + className);
-        scoreDiv.innerHTML = response.score;
-    });
-}
-
-function downVote(id, callback) {
-    let xhr = new XMLHttpRequest();
-    xhr.open('PUT', 'http://localhost:8080/posts/' + id);
-    xhr.onreadystatechange = function() {
-        if (xhr.readyState === XMLHttpRequest.DONE) {       
             callback(JSON.parse(xhr.response))
         }
     }
