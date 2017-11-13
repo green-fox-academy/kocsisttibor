@@ -44,7 +44,7 @@ div.vote_block {
     padding: 0.7rem 0.2rem;
 }
 
-div.vote_block > div:nth-child(1) {
+div.vote_block > a:nth-child(1) > div {
     height: 1.2rem;
     background-image: url("upvote.png");
     background-position: center;
@@ -60,7 +60,7 @@ div.vote_block > div:nth-child(2) {
     align-items: center;
 } 
 
-div.vote_block > div:nth-child(3) {
+div.vote_block > a:nth-child(3) > div {
     height: 1.2rem;
     background-image: url("downvote.png");
     background-position: center;
@@ -71,7 +71,11 @@ article {
     padding: 0 0.5rem;
 }
 
-article > div:nth-child(1) {
+article > a:nth-child(1) {
+    text-decoration: none;
+}
+
+article > a:nth-child(1) > div {
     font-size: 1.8rem;
     margin-bottom: 0.3rem;
 }

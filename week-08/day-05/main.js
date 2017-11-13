@@ -20,12 +20,12 @@ function createSection (data) {
         let author = data.posts[i].user === null ? 'anonymus': data.posts[i].user;
         let structure = `
         <div class = "vote_block">
-        <div class = "up_${data.posts[i].id}"></div>
+        <a href=#><div class = "up_${data.posts[i].id}"></div></a>
         <div class = "score_${data.posts[i].id}">${data.posts[i].score}</div>
-        <div class = "down_${data.posts[i].id}"></div>
+        <a href=#><div class = "down_${data.posts[i].id}"></div></a>
         </div>
         <article>
-        <div>${data.posts[i].title}</div>
+        <a href=${data.posts[i].url}><div>${data.posts[i].title}</div></a>
         <div>submitted ${elapsed.getMinutes()} minutes ago by ${author}</div>
         <ul>
         <li>comments</li>
@@ -53,6 +53,9 @@ function callVote() {
         let scoreDiv = document.querySelector('div.' + className);
         scoreDiv.innerHTML = response.score;
     });
+    this.className.includes('up') ? 
+        this.style.backgroundImage = 'url(css/upvoted.png)':
+        this.style.backgroundImage = 'url(css/downvoted.png)';
 }
 
 function vote(id, callback) {
