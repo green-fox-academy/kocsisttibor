@@ -75,12 +75,13 @@ app.post('/posts', (req, res) => {
 });
 
 const getScore = (post_id) => {
+    console.log('getScore: ' + post_id);                //post_id needs to be manipulated -> split by _ 
     connection.query('SELECT score FROM posts WHERE post_id =' + connection.escape(post_id), (err, result) => {
         if (err) {
             console.error(err);
             return;
         } else {
-            console.error('result of getScore: ' + result);  //query doesn't results any data while in mysql shell this select works
+            console.error('result of getScore: ' + result);  
             // callback(post_id, result);
         };
     });

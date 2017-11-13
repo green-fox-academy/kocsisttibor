@@ -52,7 +52,7 @@ function callUpVote() {
 function upVote(id, callback) {
     console.log('upVote started');
     let xhr = new XMLHttpRequest();
-    xhr.open('PUT', 'http://localhost:8080/posts/:' + id + '/upvote');
+    xhr.open('PUT', 'http://localhost:8080/posts/' + id + '/upvote');
     xhr.onreadystatechange = function() {
         if (xhr.readyState === XMLHttpRequest.DONE) {       //same as xhr.readystate === 4
             callback(JSON.parse(xhr.response))
