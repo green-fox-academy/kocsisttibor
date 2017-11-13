@@ -22,7 +22,7 @@ function createSection (data) {
         <div class = "vote_block">
         <div class = "up_${data.posts[i].id}"></div>
         <div class = "score_${data.posts[i].id}">${data.posts[i].score}</div>
-        <div></div>
+        <div class = "down_${data.posts[i].id}"></div>
         </div>
         <article>
         <div>${data.posts[i].title}</div>
@@ -40,6 +40,8 @@ function createSection (data) {
         container.appendChild(section);
         let upArrow = document.querySelector('div.up_' + data.posts[i].id);
         upArrow.addEventListener('click', callUpVote);
+        let downArrow = document.querySelector('div.down_' + data.posts[i].id);
+        downArrow.addEventListener('click', callDownVote);
     }
     let loading = document.querySelector('p.loading');
     loading.style.display = 'None';
@@ -64,5 +66,23 @@ function upVote(id, callback) {
     xhr.send();
 }
 
+function callDownVote() {
+    downVote(this.className, response => {
+        let className = 'score_' + this.className.split('_')[1];
+        let scoreDiv = document.querySelector('div.' + className);
+        scoreDiv.innerHTML = response.score;
+    });
+}
+
+function downVote(id, callback) {
+    let xhr = new XMLHttpRequest();
+    xhr.open('PUT', 'http://localhost:8080/posts/' + id + '/downvote');
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === XMLHttpRequest.DONE) {       
+            callback(JSON.parse(xhr.response))
+        }
+    }
+    xhr.send();
+}
 
 window.onload = getPosts(createSection);

@@ -99,10 +99,32 @@ const incrementScore = (post_id, originalScore, callback) => {
     })
 }
 
+const decrementScore = (post_id, originalScore, callback) => {
+    let score = originalScore - 1;
+    connection.query('UPDATE posts SET score =' + connection.escape(score) + ' WHERE post_id =' + connection.escape(post_id), (err, result) => {
+        if (err) {
+            console.error(err);
+            return
+        } else {
+            console.error('result of decrementScore: ' + JSON.stringify(result));
+            callback(score);
+        }
+    })
+}
+
 app.put('/posts/:post_id/upvote', (req, res) => {
     let post_id = req.params.post_id.split('_')[1];         //post_id arrives in id_1 format
     getScore(post_id, result => {                           //with the result of the query is the callback function invocated; the callback function calls the incrementScore function
         incrementScore(post_id, result, newScore => {       //incrementScore also has callback <= to send back response to frontend only if the insertion of new data to database was successfull
+            res.json({"score": newScore});
+        });
+    });
+})
+
+app.put('/posts/:post_id/downvote', (req, res) => {
+    let post_id = req.params.post_id.split('_')[1];         //post_id arrives in id_1 format
+    getScore(post_id, result => {                           //with the result of the query is the callback function invocated; the callback function calls the incrementScore function
+        decrementScore(post_id, result, newScore => {       //incrementScore also has callback <= to send back response to frontend only if the insertion of new data to database was successfull
             res.json({"score": newScore});
         });
     });
