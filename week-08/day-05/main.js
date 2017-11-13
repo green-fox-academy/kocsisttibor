@@ -21,7 +21,7 @@ function createSection (data) {
         let structure = `
         <div class = "vote_block">
         <div class = "up_${data.posts[i].id}"></div>
-        <div>${data.posts[i].score}</div>
+        <div class = "score_${data.posts[i].id}">${data.posts[i].score}</div>
         <div></div>
         </div>
         <article>
@@ -46,11 +46,14 @@ function createSection (data) {
 }
 
 function callUpVote() {
-    upVote(this.className, response => console.log(response));
+    upVote(this.className, response => {
+        let className = 'score_' + this.className.split('_')[1];
+        let scoreDiv = document.querySelector('div.' + className);
+        scoreDiv.innerHTML = response.score;
+    });
 }
 
 function upVote(id, callback) {
-    console.log('upVote started');
     let xhr = new XMLHttpRequest();
     xhr.open('PUT', 'http://localhost:8080/posts/' + id + '/upvote');
     xhr.onreadystatechange = function() {
