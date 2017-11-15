@@ -1,4 +1,5 @@
 const ajax = ( method, data, resource, callback ) => {
+    const url = 'http://localhost:8080'
     const xhr = new XMLHttpRequest();
     data = data ? data : null;
     xhr.open( method, url + resource );
@@ -6,7 +7,6 @@ const ajax = ( method, data, resource, callback ) => {
     xhr.send( JSON.stringify(data) );
     xhr.onreadystatechange = () => {
       if ( xhr.readyState === XMLHttpRequest.DONE ) {
-        console.log(JSON.parse(xhr.response));
         callback( JSON.parse(xhr.response) );
       }
     };
@@ -15,4 +15,5 @@ const ajax = ( method, data, resource, callback ) => {
   const getPlaylist = callback => {
       ajax('GET', false, '/playlist', callback);
   }
+  
 
