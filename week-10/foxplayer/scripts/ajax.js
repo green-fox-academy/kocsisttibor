@@ -17,5 +17,9 @@ const ajax = ( method, data, resource, callback ) => {
   }
 
   const addPlaylist = (data, callback) => {
-    ajax('POST', data, '/addplaylist', callback)
+    ajax('POST', data, '/addplaylist', callback);
+  }
+
+  const deletePlaylist = (data, callback) => {
+    ajax('POST', data, '/deleteplaylist', callback);
   }

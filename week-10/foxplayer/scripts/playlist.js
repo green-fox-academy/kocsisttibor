@@ -9,24 +9,25 @@ const Playlist = function() {
     };
 
     function render(playlists) {
+        let container = document.querySelector('div.playlists')
+        let divs = document.querySelectorAll('div.playlists > div');
+        for (let i = divs.length - 1; i > 0; i -= 1) {
+            container.removeChild(divs[i])
+        }
         playlists.forEach(playlist => {
             let container = document.querySelector('div.playlists');
             let newDiv = document.createElement('div');
             newDiv.setAttribute('class', 'added_playlist ' + playlist.playlist_id)
             let structure = `<span>${playlist.playlist_name}</span>
-            <span class="${playlist.playlist_id}">X</span>`
+                             <span class="del_button" data-id="${playlist.playlist_id}">X</span>`   //data prefix can store anything linked to the element; name after data (id) is also changeable -> dataset. is used to grab this information
             newDiv.innerHTML = structure;
             container.appendChild(newDiv);
         });
         highlight();
+        del();
     }
     
     function load() {
-        let container = document.querySelector('div.playlists')
-        let playlists = document.querySelectorAll('div.playlists > div');
-        for (let i = playlists.length - 1; i > 1; i -= 1) {
-            container.removeChild(playlists[i])
-        }
         getPlaylist(render)
     }
     
@@ -42,21 +43,20 @@ const Playlist = function() {
         playlists.forEach((playlist) => {
             playlist.addEventListener('click', () => {
                 playlists.forEach((playlist) => {
-                    playlist.classList.remove('highlighted')
+                    playlist.classList.remove('highlighted');
                 });
                 playlist.classList.add('highlighted');
             });
         });
     }
 
-    function addEvent() {
-        
-    }
-
-    function del(i) {
-        let container = document.querySelector('div.playlists');
-        let playlists = document.querySelectorAll('div.playlists > div');
-        container.removeChild(playlists(i));
+    function del() {
+        let del_buttons = document.querySelectorAll('span.del_button');
+        del_buttons.forEach((button) => {
+            button.addEventListener('click', () => {
+                deletePlaylist({playlist_to_delete:button.dataset.id}, render);
+            });
+        });
     }
 
     showCreateDialog()
