@@ -13,7 +13,9 @@ const ajax = ( method, data, resource, callback ) => {
   };
 
   const getPlaylist = callback => {
-      ajax('GET', false, '/playlist', callback);
+    ajax('GET', false, '/playlist', callback);
   }
-  
 
+  const addPlaylist = (data, callback) => {
+    ajax('POST', data, '/addplaylist', callback)
+  }

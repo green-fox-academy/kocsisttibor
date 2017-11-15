@@ -71,8 +71,18 @@ div.playlists > div:first-child {
     font-size: 1rem;
 }
 
-div.playlists > div:first-child > span:last-child {
+.addPlaylist {
     font-size: 1.5rem;
+}
+
+div.added_playlist {
+    display: flex;
+    justify-content: space-between;
+}
+
+div.added_playlist > :nth-child(2) {
+    margin: 0% 3%;
+    font-weight: bold;
 }
 
 div.playlists > div:nth-child(odd) {
