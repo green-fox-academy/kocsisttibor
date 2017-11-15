@@ -38,7 +38,35 @@ app.get('/titles', function(req, res) {
 });
 
 app.get('/books', function(req, res) {
-    connection.query('SELECT book_name, aut_name, cate_descrip, pub_name, book_price FROM book_mast JOIN author ON author.aut_id=book_mast.aut_id JOIN category ON book_mast.cate_id=category.cate_id JOIN newpublisher ON book_mast.pub_id=newpublisher.pub_id;', function(err, rows) {
+    let filters = {
+        category: req.query.category,
+        publisher: req.query.publisher,
+        plt: req.query.plt,
+        pgt: req.query.pgt
+    }   
+    let basic_query = 'SELECT book_name, aut_name, cate_descrip, pub_name, book_price \
+                       FROM book_mast \
+                       JOIN author ON author.aut_id=book_mast.aut_id \
+                       JOIN category ON book_mast.cate_id=category.cate_id \
+                       JOIN newpublisher ON book_mast.pub_id=newpublisher.pub_id' 
+
+    if (filters.category !== undefined) {
+        basic_query += ' WHERE cate_descrip="' + filters.category + '"';
+    }
+    if (filters.publisher !== undefined) {
+        basic_query += ' AND pub_name="' + filters.publisher + '"';
+    }
+
+    if (filters.plt !== undefined) {
+        basic_query += ' AND book_price<"' + filters.plt + '"';
+    }
+
+    if (filters.pgt !== undefined) {
+        basic_query += ' AND book_price>"' + filters.pgt + '"';
+    }
+
+    basic_query += ';'
+    connection.query(basic_query, function(err, rows) {
         let html = '<table><thead>'
         Object.keys(rows[0]).forEach(function(x) {
             html += '<th>' + x + '</th>';

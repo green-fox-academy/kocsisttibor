@@ -14,7 +14,7 @@ function talkToAPI(method, resource){
 }
 
 function getList(){
-    talkToAPI('GET', '/books')
+    talkToAPI('GET', '/books?publisher=Jex+Max+Publication&pgt=100')
 }
 
 getList();
