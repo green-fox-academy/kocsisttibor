@@ -57,18 +57,21 @@ div.playlists {
     flex-grow: 1;
 }
 
+div.playlists > article {
+    width: 60%;
+    height: 2rem;
+    line-height: 2rem;
+    display: flex;
+    justify-content: space-between;
+    font-size: 1rem;
+    background: #fff;
+}
+
 div.playlists > div {
     height: 2rem;
     line-height: 2rem;
     color: rgb(52, 53, 54);
     font-size: 0.7rem;
-}
-
-div.playlists > div:first-child {
-    width: 60%;
-    display: flex;
-    justify-content: space-between;
-    font-size: 1rem;
 }
 
 .addPlaylist {
@@ -85,15 +88,28 @@ div.added_playlist > :nth-child(2) {
     font-weight: bold;
 }
 
+div.playlists > div:nth-child(3) > span:nth-child(2) {
+    display: none;
+}
+
 div.playlists > div:nth-child(odd) {
     background: #fff;
+}
+/* next rules overwrite the above one, because they are more specified */
+
+div.playlists > div.highlighted:nth-child(odd) {
+    background: #ABE7E5;
+}
+
+div.playlists > div.highlighted:nth-child(even) {
+    background: #ABE7E5;
 }
 
 div.playlists > div:hover {
     background: #ABE7E5;
 }
 
-div.playlists > div > span {
+div.playlists > div > span, div.playlists > article > span {
     margin: 0% 3%;
 }
 

@@ -10,6 +10,7 @@ app.use(express.json());
 app.use(cors());
 
 let mockPlaylist = [
+    {playlist_id: 0, playlist_name: "Favourites"},
     {playlist_id: 1, playlist_name: "Best music"}, 
     {playlist_id: 2, playlist_name: "Ambient"}]
 let id = 3
