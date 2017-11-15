@@ -14,7 +14,7 @@ const Playlist = function() {
             let newDiv = document.createElement('div');
             newDiv.setAttribute('class', 'added_playlist ' + playlist.playlist_id)
             let structure = `<span>${playlist.playlist_name}</span>
-            <span>X</span>`
+            <span class="${playlist.playlist_id}">X</span>`
             newDiv.innerHTML = structure;
             container.appendChild(newDiv);
         });
@@ -47,6 +47,16 @@ const Playlist = function() {
                 playlist.classList.add('highlighted');
             });
         });
+    }
+
+    function addEvent() {
+        
+    }
+
+    function del(i) {
+        let container = document.querySelector('div.playlists');
+        let playlists = document.querySelectorAll('div.playlists > div');
+        container.removeChild(playlists(i));
     }
 
     showCreateDialog()
