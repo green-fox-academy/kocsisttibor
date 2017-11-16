@@ -18,7 +18,7 @@ connection.connect( err => {
         console.log('Error connecting to db' + err);
         return;
     } else {
-        console.log('Connection estabilished');
+        console.log('DB connection estabilished');
     }
 });
 
@@ -48,11 +48,38 @@ app.get('/playlist', (req, res) => {
     })
 })
 
+const insertPlaylist = (playlist, callback) => {
+    connection.query('INSERT INTO playlists SET ?', playlist, (err, result) => {
+        if (err) {
+            console.error(err);
+            return;
+        } else {
+            console.error(result);
+            callback(result.insertId)
+        }
+    })
+}
+
+const getAddedPlaylistName = (result_id, callback) => {
+    connection.query('SELECT * FROM playlists WHERE playlist_id=' + connection.escape(result_id), (err, result) => {
+        if (err) {
+            console.error(err);
+            return;
+        } else {
+            console.error('result of getAddedPlaylistName: ' + result);
+            callback(result)
+        }
+    })
+}
+
 app.post('/addplaylist', (req, res) => {
-    mockPlaylist.push({playlist_id: id, playlist_name:req.body.playlist_name});
-    id += 1;
-    res.json(mockPlaylist)
-})
+    let newPlaylist = req.body;
+    insertPlaylist(newPlaylist, (result_id) => {
+        getAddedPlaylistName(result_id, (result) => {
+            res.json(result);
+        });
+    });
+});
 
 app.post('/deleteplaylist', (req, res) => {
     mockPlaylist.splice(mockPlaylist.map(x => x.playlist_id).indexOf(1*req.body.playlist_to_delete), 1);
