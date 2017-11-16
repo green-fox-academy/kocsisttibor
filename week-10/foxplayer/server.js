@@ -8,12 +8,18 @@ const port = 8080;
 
 app.use(express.json());
 app.use(cors());
+app.use('/scripts', express.static('./scripts'));
+app.use('/style', express.static('./style'));
 
 let mockPlaylist = [
     {playlist_id: 0, playlist_name: "Favourites"},
     {playlist_id: 1, playlist_name: "Best music"}, 
     {playlist_id: 2, playlist_name: "Ambient"}]
 let id = 3
+
+app.get('/', function(req, res) {
+    res.sendFile(__dirname + '/index.html');
+});
 
 app.get('/playlist', (req, res) => {
     res.send(mockPlaylist)
