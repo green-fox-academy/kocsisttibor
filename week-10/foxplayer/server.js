@@ -82,8 +82,21 @@ app.post('/addplaylist', (req, res) => {
 });
 
 app.post('/deleteplaylist', (req, res) => {
-    mockPlaylist.splice(mockPlaylist.map(x => x.playlist_id).indexOf(1*req.body.playlist_to_delete), 1);
-    res.json(mockPlaylist);
-})
+    let playlistToDelete = req.body.playlist_to_delete;
+    connection.query('DELETE FROM playlists WHERE playlist_id=' + connection.escape(playlistToDelete), (err, result) => {
+        if (err) {
+            console.error(err);
+        } else {
+            console.error('result of deletePlaylist: ' + JSON.stringify(result));
+            res.json({status: 'OK'})
+        }
+    });
+});
 
-app.listen(port, error => error ? console.log(error): console.log('Server running, at ' + port));
+app.listen(port, error => {
+    if (error) {
+        console.log(error);
+     } else {
+         console.log('Server running, at ' + port);
+     }
+});

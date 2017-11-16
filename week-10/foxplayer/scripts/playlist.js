@@ -54,7 +54,11 @@ const Playlist = function() {
         let del_buttons = document.querySelectorAll('span.del_button');
         del_buttons.forEach((button) => {
             button.addEventListener('click', () => {
-                deletePlaylist({playlist_to_delete:button.dataset.id}, render);
+                deletePlaylist({playlist_to_delete:button.dataset.id}, (result) => {
+                    if (result.status === 'OK') {
+                        load()
+                    }
+                });
             });
         });
     }
