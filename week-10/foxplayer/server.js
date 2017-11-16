@@ -2,7 +2,6 @@
 
 const express = require('express');
 const app = express();
-const urlencodedParser = express.urlencoded({extended: false});
 const cors = require('cors');
 const port = 8080;
 
@@ -25,13 +24,13 @@ app.get('/playlist', (req, res) => {
     res.send(mockPlaylist)
 })
 
-app.post('/addplaylist', urlencodedParser, (req, res) => {
+app.post('/addplaylist', (req, res) => {
     mockPlaylist.push({playlist_id: id, playlist_name:req.body.playlist_name});
     id += 1;
     res.json(mockPlaylist)
 })
 
-app.post('/deleteplaylist', urlencodedParser, (req, res) => {
+app.post('/deleteplaylist', (req, res) => {
     mockPlaylist.splice(mockPlaylist.map(x => x.playlist_id).indexOf(1*req.body.playlist_to_delete), 1);
     res.json(mockPlaylist);
 })
