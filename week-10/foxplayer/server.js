@@ -1,14 +1,32 @@
 'use strict'
 
+const port = 8080;
 const express = require('express');
 const app = express();
 const cors = require('cors');
-const port = 8080;
+const mysql = require('mysql');
+
+const connection = mysql.createConnection({
+    host: 'localhost',
+    user: 'root',
+    password: 'alma',
+    database: 'foxplayer'
+})
+
+connection.connect( err => {
+    if (err) {
+        console.log('Error connecting to db' + err);
+        return;
+    } else {
+        console.log('Connection estabilished');
+    }
+});
 
 app.use(express.json());
 app.use(cors());
 app.use('/scripts', express.static('./scripts'));
 app.use('/style', express.static('./style'));
+app.use('/music', express.static('./music'));
 
 let mockPlaylist = [
     {playlist_id: 0, playlist_name: "Favourites"},
@@ -21,7 +39,13 @@ app.get('/', function(req, res) {
 });
 
 app.get('/playlist', (req, res) => {
-    res.send(mockPlaylist)
+    connection.query('SELECT * FROM playlists', (err, result) => {
+        if (err) {
+            console.error(err);
+        } else {
+            res.json(JSON.stringify(result))
+        }
+    })
 })
 
 app.post('/addplaylist', (req, res) => {

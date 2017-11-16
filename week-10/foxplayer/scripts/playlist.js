@@ -14,7 +14,7 @@ const Playlist = function() {
         for (let i = divs.length - 1; i > 0; i -= 1) {
             container.removeChild(divs[i])
         }
-        playlists.forEach(playlist => {
+        JSON.parse(playlists).forEach(playlist => {
             let container = document.querySelector('div.playlists');
             let newDiv = document.createElement('div');
             newDiv.setAttribute('class', 'added_playlist ' + playlist.playlist_id)
