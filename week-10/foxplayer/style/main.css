@@ -204,28 +204,8 @@ div.play_pause > div:first-child {
     background-image: url('assets/rewind.svg');
 }
 
-div.play_pause > div:nth-child(2) {
-    background-image: url('assets/play.svg');
-}
-
 div.play_pause > div:last-child {
     background-image: url('assets/forward.svg');
-}
-
-div.seekbar {
-    display: flex;
-    flex-grow: 1;
-}
-
-div.seekbar > div {
-    width: 10%;
-    color: rgb(52, 53, 54);
-    font-size: 0.7rem;
-    text-align: center;
-}
-
-div.seekbar > input {
-    flex-grow: 1;
 }
 
 div.shuffle {
@@ -233,20 +213,4 @@ div.shuffle {
     background-image: url('assets/shuffle.svg');
     background-repeat: no-repeat;
     background-position: center;
-}
-
-div.volume {
-    width: 18%;
-    display: flex;
-}
-
-div.volume > div {
-    width: 33%;
-    background-image: url('assets/volume.svg');
-    background-repeat: no-repeat;
-    background-position: center;
-}
-
-div.volume > input {
-    width: 66%;
 }
