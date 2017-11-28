@@ -93,6 +93,16 @@ app.post('/deleteplaylist', (req, res) => {
     });
 });
 
+app.get('/tracklist', (req, res) => {
+    connection.query('SELECT * FROM tracks', (err, result) => {
+        if (err) {
+            console.error(err);
+        } else {
+            res.json(JSON.stringify(result))
+        }
+    })
+})
+
 app.listen(port, error => {
     if (error) {
         console.log(error);

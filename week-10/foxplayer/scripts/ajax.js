@@ -23,3 +23,7 @@ const ajax = ( method, data, resource, callback ) => {
   const deletePlaylist = (data, callback) => {
     ajax('POST', data, '/deleteplaylist', callback);
   }
+
+  const getTracklist = callback => {
+    ajax('GET', false, '/tracklist', callback);
+  }
