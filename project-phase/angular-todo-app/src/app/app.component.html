@@ -4,4 +4,13 @@
 
 <button class="header">Get todos</button>
 
+<div class=todos *ngIf="todos.length > 0; else emptyList">
+  <ul>
+    <li *ngFor="let todo of todos">{{todo}}</li>
+  </ul>
+</div>
+<ng-template #emptyList>
+  There is nothing to do
+</ng-template>
+
 
