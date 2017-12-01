@@ -9,8 +9,14 @@ import { TodosService } from './todos.service';
 export class AppComponent {
   title = 'Todos';
   todos
+  display = false;
 
   constructor(service: TodosService) {
     this.todos = service.getTodos()
   }
+
+  displayTodos() {
+    this.display = true;
+  }
+
 }

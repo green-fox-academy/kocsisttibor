@@ -1,3 +1,11 @@
 button.header {
     background: rgb(109, 110, 158);
 }
+
+ul {
+    list-style: none;
+}
+
+.selected {
+    background: red;
+}
