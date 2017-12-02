@@ -3,10 +3,11 @@
 </h1>
 <hr>
 
-<button class="header" (click)="displayTodos()">Get todos</button>
-<!-- <label>New todo:
-  <input type="text" [(ngModule)]="newTodo">
-</label> -->
+<button class="header" (click)="displayTodos()">What to do</button>
+<label>New todo:
+  <input type="text" [(ngModel)]="newTodo">
+</label>
+<button (click)="addTodo()">Add todo</button>
 <div *ngIf="display===true"> 
   <div class=todos  *ngIf="todos.length > 0; else emptyList">
     <ul>

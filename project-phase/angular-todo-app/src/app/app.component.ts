@@ -10,6 +10,7 @@ export class AppComponent {
   title = 'Todos';
   todos
   display = false;
+  newTodo
 
   constructor(service: TodosService) {
     this.todos = service.getTodos()
@@ -17,6 +18,10 @@ export class AppComponent {
 
   displayTodos() {
     this.display = true;
+  }
+
+  addTodo() {
+    this.todos.push(this.newTodo);
   }
 
 }
