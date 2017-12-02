@@ -4,10 +4,13 @@
 <hr>
 
 <button class="header" (click)="displayTodos()">What to do</button>
+
 <label>New todo:
-  <input type="text" [(ngModel)]="newTodo">
+  <input type="text" [(ngModel)]="newTodo" ng-keyup="$event.charCode === 13 ? addTodo()">
 </label>
+
 <button (click)="addTodo()">Add todo</button>
+
 <div *ngIf="display===true"> 
   <div class=todos  *ngIf="todos.length > 0; else emptyList">
     <ul>
@@ -21,5 +24,3 @@
 <ng-template #emptyList>
   There is nothing to do
 </ng-template>
-
-

@@ -11,6 +11,7 @@ export class AppComponent {
   todos
   display = false;
   newTodo
+  count = 2
 
   constructor(service: TodosService) {
     this.todos = service.getTodos()
