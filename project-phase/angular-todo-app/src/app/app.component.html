@@ -1,16 +1,21 @@
 <h1 class="header">
   {{ title }}
 </h1>
+<hr>
 
 <button class="header" (click)="displayTodos()">Get todos</button>
-
-<div class=todos *ngIf="todos.length > 0; else emptyList">
-  <ul>
-    <li *ngFor="let todo of todos" [class.selected]="display === true">
-      <input type="checkbox">
-      {{todo}}
-    </li>
-  </ul>
+<!-- <label>New todo:
+  <input type="text" [(ngModule)]="newTodo">
+</label> -->
+<div *ngIf="display===true"> 
+  <div class=todos  *ngIf="todos.length > 0; else emptyList">
+    <ul>
+      <li *ngFor="let todo of todos">
+        <input type="checkbox">
+        {{todo}}
+      </li>
+    </ul>
+  </div>
 </div>
 <ng-template #emptyList>
   There is nothing to do
