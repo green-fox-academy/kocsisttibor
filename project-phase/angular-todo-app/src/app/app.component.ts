@@ -24,4 +24,8 @@ export class AppComponent {
     this.todos.push(this.newTodo);
   }
 
+  deleteTodo(event: Event) {
+    this.todos.splice(this.todos.indexOf(((<HTMLInputElement>event.target).nextSibling.data).trim()), 1)
+  }
+
 }
