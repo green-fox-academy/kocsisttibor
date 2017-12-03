@@ -16,7 +16,7 @@
     <ul>
       <li *ngFor="let todo of todos">
         <input type="checkbox" (click)="deleteTodo($event)">
-        {{todo}}
+        {{todo.todo}}
       </li>
     </ul>
   </div>

@@ -22,7 +22,12 @@ export class AppComponent {
   }
 
   addTodo() {
-    this.todos.push(this.newTodo);
+    let newElement = {
+      todo: this.newTodo,
+      deadline: '',
+      description: '' 
+    }
+    this.todos.push(newElement);
   }
 
   deleteTodo(event: Event) {
