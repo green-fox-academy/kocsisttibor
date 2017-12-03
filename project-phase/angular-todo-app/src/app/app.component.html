@@ -15,7 +15,7 @@
   <div class=todos  *ngIf="todos.length > 0; else emptyList">
     <ul>
       <li *ngFor="let todo of todos">
-        <input type="checkbox" (click)="deleteTodo($event)">
+        <input type="checkbox" class={{todo.id}} (click)="deleteTodo($event)">
         {{todo.todo}}
       </li>
     </ul>

@@ -32,7 +32,11 @@ export class AppComponent {
   }
 
   deleteTodo(event: Event) {
-    this.todos.splice(this.todos.indexOf(((<HTMLInputElement>event.target).nextSibling.data).trim()), 1)
+    this.todos.forEach( (todo) => {
+      if (todo.id.toString() === (<HTMLInputElement>event.target).classList.value) {
+        this.todos.splice(this.todos.indexOf(todo), 1);
+      }
+    })
   }
 
 }
