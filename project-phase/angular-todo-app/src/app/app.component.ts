@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { DetailsComponent } from './details/details.component'
 import { TodosService } from './todos.service';
 
 @Component({
@@ -11,7 +12,6 @@ export class AppComponent {
   todos
   display = false;
   newTodo
-  count = 2
 
   constructor(service: TodosService) {
     this.todos = service.getTodos()

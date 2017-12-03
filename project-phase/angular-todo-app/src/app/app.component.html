@@ -6,13 +6,13 @@
 <button class="header" (click)="displayTodos()">What to do</button>
 
 <label>New todo:
-  <input type="text" [(ngModel)]="newTodo" ng-keyup="$event.charCode === 13 ? addTodo()">
+  <input type="text" [(ngModel)]="newTodo">
 </label>
 
 <button (click)="addTodo()">Add todo</button>
 
-<div *ngIf="display===true"> 
-  <div class=todos  *ngIf="todos.length > 0; else emptyList">
+<section class="todos" *ngIf="display===true"> 
+  <div *ngIf="todos.length > 0; else emptyList">
     <ul>
       <li *ngFor="let todo of todos">
         <input type="checkbox" class={{todo.id}} (click)="deleteTodo($event)">
@@ -20,7 +20,8 @@
       </li>
     </ul>
   </div>
-</div>
+  <app-details [todos]="todos"></app-details>
+</section>
 <ng-template #emptyList>
   There is nothing to do
 </ng-template>
