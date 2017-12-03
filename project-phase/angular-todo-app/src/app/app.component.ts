@@ -12,6 +12,7 @@ export class AppComponent {
   todos
   display = false;
   newTodo
+  selectedTodo
 
   constructor(service: TodosService) {
     this.todos = service.getTodos()
@@ -37,6 +38,10 @@ export class AppComponent {
         this.todos.splice(this.todos.indexOf(todo), 1);
       }
     })
+  }
+
+  markAsSelected(todo) {
+    this.selectedTodo = todo;
   }
 
 }

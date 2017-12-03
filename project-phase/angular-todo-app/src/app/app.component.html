@@ -16,11 +16,11 @@
     <ul>
       <li *ngFor="let todo of todos">
         <input type="checkbox" class={{todo.id}} (click)="deleteTodo($event)">
-        {{todo.todo}}
+        <span (click)="markAsSelected(todo)">{{todo.todo}}</span> 
       </li>
     </ul>
   </div>
-  <app-details [todos]="todos"></app-details>
+  <app-details *ngIf="selectedTodo" [selectedTodo]="selectedTodo"></app-details>
 </section>
 <ng-template #emptyList>
   There is nothing to do
