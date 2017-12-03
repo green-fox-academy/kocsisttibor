@@ -23,6 +23,7 @@ export class AppComponent {
 
   addTodo() {
     let newElement = {
+      id: this.todos.length,
       todo: this.newTodo,
       deadline: '',
       description: '' 
