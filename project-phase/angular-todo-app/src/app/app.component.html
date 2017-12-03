@@ -1,27 +1,27 @@
-<h1 class="header">
-  {{ title }}
-</h1>
-<hr>
-
-<button class="header" (click)="displayTodos()">What to do</button>
-
-<label>New todo:
-  <input type="text" [(ngModel)]="newTodo">
-</label>
-
-<button (click)="addTodo()">Add todo</button>
-
-<section class="todos" *ngIf="display===true"> 
-  <div *ngIf="todos.length > 0; else emptyList">
-    <ul>
-      <li *ngFor="let todo of todos">
-        <input type="checkbox" class={{todo.id}} (click)="deleteTodo($event)">
-        <span (click)="markAsSelected(todo)">{{todo.todo}}</span> 
-      </li>
-    </ul>
+<div class="card">
+  <div class="card-header">
+    <h3>{{ title }}</h3>
   </div>
-  <app-details *ngIf="selectedTodo" [selectedTodo]="selectedTodo"></app-details>
-</section>
-<ng-template #emptyList>
-  There is nothing to do
-</ng-template>
+  <div class="card-block">
+    <button class="btn btn-primary" (click)="displayTodos()">What to do</button>
+    <label>New todo:
+      <input type="text" [(ngModel)]="newTodo">
+    </label>
+    <button (click)="addTodo()">Add todo</button>
+  </div>
+
+  <section class="card-text" *ngIf="display===true"> 
+    <div *ngIf="todos.length > 0; else emptyList">
+      <ul>
+        <li *ngFor="let todo of todos">
+          <input type="checkbox" class={{todo.id}} (click)="deleteTodo($event)">
+          <span (click)="markAsSelected(todo)">{{todo.todo}}</span> 
+        </li>
+      </ul>
+    </div>
+    <app-details *ngIf="selectedTodo" [selectedTodo]="selectedTodo"></app-details>
+  </section>
+  <ng-template #emptyList>
+    There is nothing to do
+  </ng-template>
+</div>
