@@ -14,7 +14,7 @@ const Playlist = function() {
         for (let i = divs.length - 1; i > 0; i -= 1) {
             container.removeChild(divs[i])
         }
-        playlists.forEach(playlist => {
+        JSON.parse(playlists).forEach(playlist => {
             let container = document.querySelector('div.playlists');
             let newDiv = document.createElement('div');
             newDiv.setAttribute('class', 'added_playlist ' + playlist.playlist_id)
@@ -54,7 +54,11 @@ const Playlist = function() {
         let del_buttons = document.querySelectorAll('span.del_button');
         del_buttons.forEach((button) => {
             button.addEventListener('click', () => {
-                deletePlaylist({playlist_to_delete:button.dataset.id}, render);
+                deletePlaylist({playlist_to_delete:button.dataset.id}, (result) => {
+                    if (result.status === 'OK') {
+                        load()
+                    }
+                });
             });
         });
     }

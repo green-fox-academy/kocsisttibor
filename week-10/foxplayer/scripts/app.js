@@ -2,6 +2,7 @@ class App {
 
     constructor() {
         let playlist = Playlist();
+        let tracklist = Tracklist();
     }
 }
 

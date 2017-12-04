@@ -1,0 +1,8 @@
+ul {
+    list-style: none;
+}
+
+section.todos {
+    display: flex;
+    justify-content: space-between;
+}
